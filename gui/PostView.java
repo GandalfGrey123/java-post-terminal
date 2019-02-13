@@ -8,9 +8,6 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Stack;
-import java.util.StringTokenizer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -25,7 +22,7 @@ public class PostView extends javax.swing.JFrame {
     private void initComponents() {
 
         custNameLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        custNameTextField = new javax.swing.JTextField();
         productsLabel = new javax.swing.JLabel();
         upcLabel = new javax.swing.JLabel();
         invoiceScrollPane = new javax.swing.JScrollPane();
@@ -48,9 +45,9 @@ public class PostView extends javax.swing.JFrame {
 
         custNameLabel.setText("Customer name :");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        custNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                custNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -90,7 +87,7 @@ public class PostView extends javax.swing.JFrame {
 
         paymentTypeLabel.setText("Payment type");
 
-        payTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        payTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check", "Item 4" }));
 
         amountLabel.setText("Amount");
 
@@ -109,7 +106,11 @@ public class PostView extends javax.swing.JFrame {
         });
 
 
-    }// </editor-fold>                                                                
+    }// </editor-fold> 
+
+    private void custNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                                                
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
@@ -147,6 +148,7 @@ public class PostView extends javax.swing.JFrame {
     private javax.swing.JLabel invoiceLabel;
     private javax.swing.JScrollPane invoiceScrollPane;
     private javax.swing.JTable invoiceTable;
+    private javax.swing.JTextField custNameTextField;
     private javax.swing.JTextField timeTextField;
     // End of variables declaration                   
     
