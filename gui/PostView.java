@@ -62,7 +62,7 @@ public class PostView extends javax.swing.JFrame {
         payButton = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Find");
+        setTitle("POST");
 
         timeTextField.setText("9:34 AM Wednesday, February 13, 2019 (PST)");
 
