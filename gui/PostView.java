@@ -1,6 +1,5 @@
 package gui;
 
-import static java.awt.FlowLayout.LEADING;
 import javax.swing.*;
 import static javax.swing.GroupLayout.Alignment.*;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
@@ -110,104 +109,99 @@ public class PostView extends javax.swing.JFrame {
         });
 
         GroupLayout layout = new GroupLayout(getContentPane());
-
         getContentPane().setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
- 
         layout.setHorizontalGroup(
             layout.createSequentialGroup()
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup()
-                    .add(layout.createSequentialGroup()
-                        .add(65, 65, 65)
-                        .add(layout.createParallelGroup()
-                            .add(layout.createSequentialGroup()
-                                .add(custNameLabel)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        //.add(65, 65, 65)
+                        .addGroup(layout.createParallelGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(custNameLabel)
                                 .addPreferredGap(RELATED)
-                                .add(custNameTextField, PREFERRED_SIZE, 92, PREFERRED_SIZE)
+                                .addComponent(custNameTextField, PREFERRED_SIZE, 92, PREFERRED_SIZE)
                                 .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(enterButton))
-                            .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup()
-                                    .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(TRAILING)
-                                            .add(layout.createSequentialGroup()
-                                                .add(paymentTypeLabel)
+                                .addComponent(enterButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup()
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(paymentTypeLabel)
                                                 .addPreferredGap( RELATED)
-                                                .add(payTypeComboBox, PREFERRED_SIZE, 96, PREFERRED_SIZE))
-                                            .add(productsComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                                            .add(layout.createParallelGroup()
-                                                .add(layout.createSequentialGroup()
-                                                    .add(timeTextField, PREFERRED_SIZE, 182, PREFERRED_SIZE)
+                                                .addComponent(payTypeComboBox, PREFERRED_SIZE, 96, PREFERRED_SIZE))
+                                            .addComponent(productsComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup()
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(timeTextField, PREFERRED_SIZE, 182, PREFERRED_SIZE)
                                                     .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .add(paymentLabel)
-                                                    .add(118, 118, 118))
-                                                .add(invoiceScrollPane, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
-                                        .addPreferredGap( RELATED)
-                                        .add(amountLabel)
-                                        .addPreferredGap( RELATED)
-                                        .add(amountTextField, PREFERRED_SIZE, 57, PREFERRED_SIZE))
-                                    .add(layout.createSequentialGroup()
-                                        .add(358, 358, 358)
-                                        .add(payButton)))
-                                .add(0, 27, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .add(TRAILING, layout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
-                .add(invoiceLabel)
-                .add(72, 72, 72)
-                .add(layout.createParallelGroup(LEADING, false)
-                    .add(layout.createSequentialGroup()
-                        .add(productsLabel)
+                                                    .addComponent(paymentLabel)
+                                                    //.add(118, 118, 118))
+                                                .addComponent(invoiceScrollPane, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
+                                        //.addPreferredGap( RELATED)
+                                        .addComponent(amountLabel)
+                                        //.addPreferredGap( RELATED)
+                                        .addComponent(amountTextField, PREFERRED_SIZE, 57, PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        //.add(358, 358, 358)
+                                        .addComponent(payButton)))
+                                //.add(0, 27, Short.MAX_VALUE)))))
+                //.addContainerGap())
+            .addGroup(TRAILING, layout.createSequentialGroup()
+                //.add(0, 0, Short.MAX_VALUE)
+                .addComponent(invoiceLabel)
+                //.add(72, 72, 72)
+                .addGroup(layout.createParallelGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(productsLabel)
                         .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(qtyLabel)
+                        .addComponent(qtyLabel)
                         .addPreferredGap( UNRELATED)
-                        .add(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
-                    .add(TRAILING, layout.createSequentialGroup()
-                        .add(upcLabel)
-                        .add(265, 265, 265))))
-        );
+                        .addComponent(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                    .addGroup(TRAILING, layout.createSequentialGroup()
+                        .addComponent(upcLabel)
+                                   //.add(265, 265, 265))))
+        ))))))))));
         layout.setVerticalGroup(
             layout.createParallelGroup()
-            .add(layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup()
-                    .add(qtyLabel)
-                    .add(layout.createParallelGroup(BASELINE)
-                        .add(productsLabel)
-                        .add(productsComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                        .add(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(qtyLabel)
+                    .addGroup(layout.createParallelGroup(BASELINE)
+                        .addComponent(productsLabel)
+                        .addComponent(productsComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                        .addComponent(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
                 .addPreferredGap( RELATED)
-                .add(layout.createParallelGroup(BASELINE)
-                    .add(custNameLabel)
-                    .add(custNameTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                    .add(enterButton))
-                .add(layout.createParallelGroup()
-                    .add(layout.createSequentialGroup()
-                        .add(42, 42, 42)
-                        .add(upcLabel)
+                .addGroup(layout.createParallelGroup(BASELINE)
+                    .addComponent(custNameLabel)
+                    .addComponent(custNameTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                    .addComponent(enterButton))
+                .addGroup(layout.createParallelGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        //.add(42, 42, 42)
+                        .addComponent(upcLabel)
                         .addPreferredGap( RELATED, 21, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(invoiceLabel)
+                        .addComponent(invoiceLabel)
                         .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)))
-                .add(invoiceScrollPane, PREFERRED_SIZE, 258, PREFERRED_SIZE)
-                .add(31, 31, 31)
-                .add(layout.createParallelGroup()
-                    .add(paymentLabel)
-                    .add(timeTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                .addComponent(invoiceScrollPane, PREFERRED_SIZE, 258, PREFERRED_SIZE)
+                //.add(31, 31, 31)
+                .addGroup(layout.createParallelGroup()
+                    .addComponent(paymentLabel)
+                    .addComponent(timeTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
                 .addPreferredGap( RELATED)
-                .add(layout.createParallelGroup(BASELINE)
-                    .add(paymentTypeLabel)
-                    .add(payTypeComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                    .add(amountLabel)
-                    .add(amountTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(BASELINE)
+                    .addComponent(paymentTypeLabel)
+                    .addComponent(payTypeComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                    .addComponent(amountLabel)
+                    .addComponent(amountTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
                 .addPreferredGap( UNRELATED)
-                .add(payButton)
-                .add(39, 39, 39))
-        );
+                .addComponent(payButton)
+               // .add(39, 39, 39))
+        ));
 
         pack();
 
@@ -236,9 +230,36 @@ public class PostView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+  public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            javax.swing.UIManager.LookAndFeelInfo[] installedLookAndFeels=javax.swing.UIManager.getInstalledLookAndFeels();
+            for (int idx=0; idx<installedLookAndFeels.length; idx++)
+                if ("Nimbus".equals(installedLookAndFeels[idx].getName())) {
+                    javax.swing.UIManager.setLookAndFeel(installedLookAndFeels[idx].getClassName());
+                    break;
+                }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Find.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Find.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Find.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Find.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PostView().setVisible(true);
+            }
+        });
     }
     
     // Variables declaration - do not modify                     
