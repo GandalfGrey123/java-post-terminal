@@ -5,7 +5,6 @@ import static javax.swing.GroupLayout.Alignment.*;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
-import static javax.swing.LayoutStyle.ComponentPlacement.UNRELATED;
 
 
 public class PostView extends javax.swing.JFrame {
@@ -15,41 +14,63 @@ public class PostView extends javax.swing.JFrame {
         initComponents();
     }
     
+    // Variables declaration                    
+    private JLabel amountLabel;
+    private JTextField amountTextField;
+    private JLabel custNameLabel;
+    private JTextField custNameTextField;
+    private JPanel customerPanel;
+    private JPanel invoicePanel;
+    private JTable invoiceScrollPane;
+    private JButton enterButton;
+    private JScrollPane invoiceScrollPanel;
+    private JButton payButton;
+    private JComboBox payTypeComboBox;
+    private JLabel paymentLabel;
+    private JPanel paymentPanel;
+    private JComboBox productsComboBox;
+    private JPanel productsPanel;
+    private JComboBox qtyComboBox;
+    private JLabel qtyLabel;
+    private JLabel timeTextField;
+    private JLabel upcLabel;
+    // End of variables declaration   
+    
     /** This method is called from within the constructor to
      * initialize the form.
      */                       
     private void initComponents() {
 
-        timeTextField = new javax.swing.JLabel();
-        productsPanel = new javax.swing.JPanel();
-        upcLabel = new javax.swing.JLabel();
-        productsComboBox = new javax.swing.JComboBox();
-        enterButton = new javax.swing.JButton();
-        qtyLabel = new javax.swing.JLabel();
-        qtyComboBox = new javax.swing.JComboBox();
-        customerPanel = new javax.swing.JPanel();
-        custNameLabel = new javax.swing.JLabel();
-        custNameTextField = new javax.swing.JTextField();
-        invoicePanel = new javax.swing.JPanel();
-        invoiceScrollPanel = new javax.swing.JScrollPane();
-        invoiceScrollPane = new javax.swing.JTable();
-        paymentPanel = new javax.swing.JPanel();
-        paymentLabel = new javax.swing.JLabel();
-        payTypeComboBox = new javax.swing.JComboBox();
-        amountLabel = new javax.swing.JLabel();
-        amountTextField = new javax.swing.JTextField();
-        payButton = new javax.swing.JButton();
+        timeTextField = new JLabel();
+        productsPanel = new JPanel();
+        upcLabel = new JLabel();
+        productsComboBox = new JComboBox();        
+        enterButton = new JButton();
+        qtyLabel = new JLabel();
+        qtyComboBox = new JComboBox();
+        customerPanel = new JPanel();
+        custNameLabel = new JLabel();
+        custNameTextField = new JTextField();
+        invoicePanel = new JPanel();
+        invoiceScrollPanel = new JScrollPane();
+        invoiceScrollPane = new JTable();
+        paymentPanel = new JPanel();
+        paymentLabel = new JLabel();
+        payTypeComboBox = new JComboBox();
+        amountLabel = new JLabel();
+        amountTextField = new JTextField();
+        payButton = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Find");
 
         timeTextField.setText("9:34 AM Wednesday, February 13, 2019 (PST)");
 
-        productsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Products"));
+        productsPanel.setBorder(BorderFactory.createTitledBorder("Products"));
 
         upcLabel.setText("UPC");
 
-        productsComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productsComboBox.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         enterButton.setText("Enter");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +81,7 @@ public class PostView extends javax.swing.JFrame {
 
         qtyLabel.setText("Qty");
 
-        qtyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        qtyComboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
         GroupLayout productsPanelLayout = new GroupLayout(productsPanel);
         productsPanel.setLayout(productsPanelLayout);
@@ -68,13 +89,9 @@ public class PostView extends javax.swing.JFrame {
             productsPanelLayout.createParallelGroup(LEADING)
             .addGroup(productsPanelLayout.createSequentialGroup()
                 .addComponent(upcLabel)
-                .addPreferredGap(RELATED)
                 .addComponent(productsComboBox, PREFERRED_SIZE, 154, PREFERRED_SIZE)
-                .addPreferredGap(UNRELATED)
                 .addComponent(qtyLabel)
-                .addPreferredGap(RELATED)
                 .addComponent(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                .addPreferredGap(RELATED, 16, Short.MAX_VALUE)
                 .addComponent(enterButton)
                 .addContainerGap())
         );
@@ -91,7 +108,7 @@ public class PostView extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        customerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer"));
+        customerPanel.setBorder(BorderFactory.createTitledBorder("Customer"));
 
         custNameLabel.setText("Name ");
 
@@ -122,7 +139,7 @@ public class PostView extends javax.swing.JFrame {
                 .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        invoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Invoice"));
+        invoicePanel.setBorder(BorderFactory.createTitledBorder("Invoice"));
 
         invoiceScrollPane.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,11 +170,11 @@ public class PostView extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        paymentPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Payment"));
+        paymentPanel.setBorder(BorderFactory.createTitledBorder("Payment"));
 
         paymentLabel.setText("Payment type");
 
-        payTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check"}));
+        payTypeComboBox.setModel(new DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check"}));
         payTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payTypeComboBoxActionPerformed(evt);
@@ -183,7 +200,6 @@ public class PostView extends javax.swing.JFrame {
                         .addComponent(paymentLabel)
                         .addPreferredGap(RELATED)
                         .addComponent(payTypeComboBox, PREFERRED_SIZE, 96, PREFERRED_SIZE)
-                        .addPreferredGap(UNRELATED, 38, Short.MAX_VALUE)
                         .addComponent(amountLabel)
                         .addPreferredGap(RELATED)
                         .addComponent(amountTextField, PREFERRED_SIZE, 95, PREFERRED_SIZE))
@@ -276,28 +292,6 @@ public class PostView extends javax.swing.JFrame {
                 new PostView().setVisible(true);
             }
         });
-    }
-    
-    // Variables declaration - do not modify                     
-    private javax.swing.JLabel amountLabel;
-    private javax.swing.JTextField amountTextField;
-    private javax.swing.JLabel custNameLabel;
-    private javax.swing.JTextField custNameTextField;
-    private javax.swing.JPanel customerPanel;
-    private javax.swing.JPanel invoicePanel;
-    private javax.swing.JTable invoiceScrollPane;
-    private javax.swing.JButton enterButton;
-    private javax.swing.JScrollPane invoiceScrollPanel;
-    private javax.swing.JButton payButton;
-    private javax.swing.JComboBox payTypeComboBox;
-    private javax.swing.JLabel paymentLabel;
-    private javax.swing.JPanel paymentPanel;
-    private javax.swing.JComboBox productsComboBox;
-    private javax.swing.JPanel productsPanel;
-    private javax.swing.JComboBox qtyComboBox;
-    private javax.swing.JLabel qtyLabel;
-    private javax.swing.JLabel timeTextField;
-    private javax.swing.JLabel upcLabel;
-    // End of variables declaration                   
+    }                
     
 }
