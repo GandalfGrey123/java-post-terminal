@@ -24,54 +24,29 @@ public class PostView extends javax.swing.JFrame {
                            
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        menuBar1 = new java.awt.MenuBar();
-        menu1 = new java.awt.Menu();
-        menu2 = new java.awt.Menu();
-        menuBar2 = new java.awt.MenuBar();
-        menu3 = new java.awt.Menu();
-        menu4 = new java.awt.Menu();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        custNameLabel = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        productsLabel = new javax.swing.JLabel();
+        upcLabel = new javax.swing.JLabel();
+        invoiceScrollPane = new javax.swing.JScrollPane();
+        invoiceTable = new javax.swing.JTable();
+        qtyLabel = new javax.swing.JLabel();
+        productsComboBox = new javax.swing.JComboBox();
+        qtyComboBox = new javax.swing.JComboBox();
+        enterButton = new javax.swing.JButton();
+        paymentLabel = new javax.swing.JLabel();
+        invoiceLabel = new javax.swing.JLabel();
+        paymentTypeLabel = new javax.swing.JLabel();
+        payTypeComboBox = new javax.swing.JComboBox();
+        amountLabel = new javax.swing.JLabel();
+        payButton = new javax.swing.JButton();
+        timeTextField = new javax.swing.JTextField();
 
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
-
-        menu1.setLabel("File");
-        menuBar1.add(menu1);
-
-        menu2.setLabel("Edit");
-        menuBar1.add(menu2);
-
-        menu3.setLabel("File");
-        menuBar2.add(menu3);
-
-        menu4.setLabel("Edit");
-        menuBar2.add(menu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PostView");
 
-        jLabel2.setText("Customer name :");
+        custNameLabel.setText("Customer name :");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,11 +54,11 @@ public class PostView extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Products");
+        productsLabel.setText("Products");
 
-        jLabel4.setText("UPC");
+        upcLabel.setText("UPC");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -94,61 +69,57 @@ public class PostView extends javax.swing.JFrame {
                 "ITEM", "QTY", "UNIT PRICE", "EXTENDED PRICE"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        invoiceScrollPane.setViewportView(invoiceTable);
 
-        jLabel5.setText("Qty");
+        qtyLabel.setText("Qty");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productsComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        qtyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Enter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        enterButton.setText("Enter");
+        enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                enterButtonActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Payment");
+        paymentLabel.setText("Payment");
 
-        jLabel7.setText("Invoice");
+        invoiceLabel.setText("Invoice");
 
-        jLabel10.setText("Payment type");
+        paymentTypeLabel.setText("Payment type");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        payTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel11.setText("Amount");
+        amountLabel.setText("Amount");
 
-        jButton2.setText("Pay");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        payButton.setText("Pay");
+        payButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                payButtonActionPerformed(evt);
             }
         });
 
-        jTextField5.setText("Tuesday, February 12, 2019 (PST) Time in San Francisco, CA");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        timeTextField.setText("Tuesday, February 12, 2019 (PST) Time in San Francisco, CA");
+        timeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                timeTextFieldActionPerformed(evt);
             }
         });
 
 
-    }// </editor-fold>                        
+    }// </editor-fold>                                                                
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
     }                                        
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void timeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
     }                                           
     
@@ -161,39 +132,22 @@ public class PostView extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private java.awt.Menu menu1;
-    private java.awt.Menu menu2;
-    private java.awt.Menu menu3;
-    private java.awt.Menu menu4;
-    private java.awt.MenuBar menuBar1;
-    private java.awt.MenuBar menuBar2;
+    private javax.swing.JButton enterButton;
+    private javax.swing.JButton payButton;
+    private javax.swing.JComboBox productsComboBox;
+    private javax.swing.JComboBox qtyComboBox;
+    private javax.swing.JComboBox payTypeComboBox;
+    private javax.swing.JLabel paymentTypeLabel;
+    private javax.swing.JLabel amountLabel;
+    private javax.swing.JLabel custNameLabel;
+    private javax.swing.JLabel productsLabel;
+    private javax.swing.JLabel upcLabel;
+    private javax.swing.JLabel qtyLabel;
+    private javax.swing.JLabel paymentLabel;
+    private javax.swing.JLabel invoiceLabel;
+    private javax.swing.JScrollPane invoiceScrollPane;
+    private javax.swing.JTable invoiceTable;
+    private javax.swing.JTextField timeTextField;
     // End of variables declaration                   
     
 }
