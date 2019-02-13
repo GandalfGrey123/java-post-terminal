@@ -1,15 +1,11 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Panel;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import static java.awt.FlowLayout.LEADING;
+import javax.swing.*;
+import static javax.swing.GroupLayout.Alignment.*;
+import static javax.swing.GroupLayout.DEFAULT_SIZE;
+import static javax.swing.GroupLayout.PREFERRED_SIZE;
+import static javax.swing.LayoutStyle.ComponentPlacement.*;
 
 
 
@@ -38,6 +34,7 @@ public class PostView extends javax.swing.JFrame {
         amountLabel = new javax.swing.JLabel();
         payButton = new javax.swing.JButton();
         timeTextField = new javax.swing.JTextField();
+        amountTextField = new javax.swing.JTextField();
 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,6 +87,13 @@ public class PostView extends javax.swing.JFrame {
         payTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check", "Item 4" }));
 
         amountLabel.setText("Amount");
+        
+        amountTextField.setText("Tuesday, February 12, 2019 (PST) Time in San Francisco, CA");
+        amountTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountTextFieldActionPerformed(evt);
+            }
+        });
 
         payButton.setText("Pay");
         payButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +109,107 @@ public class PostView extends javax.swing.JFrame {
             }
         });
 
+        GroupLayout layout = new GroupLayout(getContentPane());
+
+        getContentPane().setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+ 
+        layout.setHorizontalGroup(
+            layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup()
+                    .add(layout.createSequentialGroup()
+                        .add(65, 65, 65)
+                        .add(layout.createParallelGroup()
+                            .add(layout.createSequentialGroup()
+                                .add(custNameLabel)
+                                .addPreferredGap(RELATED)
+                                .add(custNameTextField, PREFERRED_SIZE, 92, PREFERRED_SIZE)
+                                .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(enterButton))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup()
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(TRAILING)
+                                            .add(layout.createSequentialGroup()
+                                                .add(paymentTypeLabel)
+                                                .addPreferredGap( RELATED)
+                                                .add(payTypeComboBox, PREFERRED_SIZE, 96, PREFERRED_SIZE))
+                                            .add(productsComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                                            .add(layout.createParallelGroup()
+                                                .add(layout.createSequentialGroup()
+                                                    .add(timeTextField, PREFERRED_SIZE, 182, PREFERRED_SIZE)
+                                                    .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .add(paymentLabel)
+                                                    .add(118, 118, 118))
+                                                .add(invoiceScrollPane, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
+                                        .addPreferredGap( RELATED)
+                                        .add(amountLabel)
+                                        .addPreferredGap( RELATED)
+                                        .add(amountTextField, PREFERRED_SIZE, 57, PREFERRED_SIZE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(358, 358, 358)
+                                        .add(payButton)))
+                                .add(0, 27, Short.MAX_VALUE)))))
+                .addContainerGap())
+            .add(TRAILING, layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(invoiceLabel)
+                .add(72, 72, 72)
+                .add(layout.createParallelGroup(LEADING, false)
+                    .add(layout.createSequentialGroup()
+                        .add(productsLabel)
+                        .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(qtyLabel)
+                        .addPreferredGap( UNRELATED)
+                        .add(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                    .add(TRAILING, layout.createSequentialGroup()
+                        .add(upcLabel)
+                        .add(265, 265, 265))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup()
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup()
+                    .add(qtyLabel)
+                    .add(layout.createParallelGroup(BASELINE)
+                        .add(productsLabel)
+                        .add(productsComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                        .add(qtyComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
+                .addPreferredGap( RELATED)
+                .add(layout.createParallelGroup(BASELINE)
+                    .add(custNameLabel)
+                    .add(custNameTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                    .add(enterButton))
+                .add(layout.createParallelGroup()
+                    .add(layout.createSequentialGroup()
+                        .add(42, 42, 42)
+                        .add(upcLabel)
+                        .addPreferredGap( RELATED, 21, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(invoiceLabel)
+                        .addPreferredGap( RELATED, DEFAULT_SIZE, Short.MAX_VALUE)))
+                .add(invoiceScrollPane, PREFERRED_SIZE, 258, PREFERRED_SIZE)
+                .add(31, 31, 31)
+                .add(layout.createParallelGroup()
+                    .add(paymentLabel)
+                    .add(timeTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                .addPreferredGap( RELATED)
+                .add(layout.createParallelGroup(BASELINE)
+                    .add(paymentTypeLabel)
+                    .add(payTypeComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                    .add(amountLabel)
+                    .add(amountTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                .addPreferredGap( UNRELATED)
+                .add(payButton)
+                .add(39, 39, 39))
+        );
+
+        pack();
 
     }// </editor-fold> 
 
@@ -123,6 +228,10 @@ public class PostView extends javax.swing.JFrame {
     private void timeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
     }                                           
+    
+    private void amountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }  
     
     /**
      * @param args the command line arguments
@@ -150,6 +259,7 @@ public class PostView extends javax.swing.JFrame {
     private javax.swing.JTable invoiceTable;
     private javax.swing.JTextField custNameTextField;
     private javax.swing.JTextField timeTextField;
+    private javax.swing.JTextField amountTextField;
     // End of variables declaration                   
     
 }
