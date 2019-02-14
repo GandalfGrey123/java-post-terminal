@@ -299,27 +299,29 @@ public class PostView extends javax.swing.JFrame {
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         //insert and store data into Jtable
         if(cartSize < 17) {
-            invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
-            invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
-            invoiceScrollPane.setValueAt("get from REST", cartSize, 2);
-            //int test = Integer.parseInt(qtyLabel.getText());
-            // int test2 = Integer.parseInt(amountLabel.getText());
-            // int test3 = test*test2;
-            //String test4 = Integer.toString(test3);
-            //invoiceScrollPane.setValueAt(test4,cartSize,3);
-            invoiceScrollPane.setValueAt("qty*price", cartSize, 3);
-            cartSize++;
+            addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
         } else {
             dtm.addRow(new Object[] {null, null, null, null, null, null});
-            invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
-            invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
-            invoiceScrollPane.setValueAt("get from REST", cartSize, 2);
-            invoiceScrollPane.setValueAt("qty*price", cartSize, 3);
-            cartSize++;
+            addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
             System.out.println("Cart full, made more space..");
         }
 
-    }                                        
+    }
+
+    private void addToCart(Object upc, Object quantity) {
+        String price = "get from REST";
+        String extPrice = "qty*price";
+        invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
+        invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
+        invoiceScrollPane.setValueAt(price, cartSize, 2);
+        invoiceScrollPane.setValueAt(extPrice, cartSize, 3);
+        cartSize++;
+
+    }
+
+    private void addToCart(Object upc, Object quantity, Object price, Object extPrice) {
+        //use this one with the REST data
+    }
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // clear all fields and send data to REST API database
@@ -327,7 +329,7 @@ public class PostView extends javax.swing.JFrame {
     }                                         
 
     private void payTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        // send to REST endpoint
     }
 
     private void clearFields() {
@@ -337,6 +339,7 @@ public class PostView extends javax.swing.JFrame {
         productsComboBox.setSelectedIndex(0);
         qtyComboBox.setSelectedIndex(0);
         payTypeComboBox.setSelectedIndex(0);
+        cartSize = 0;
         for(int count = 1; count <= 17; count++) {
             dtm.addRow(new Object[] {null, null, null, null, null, null});
         }
@@ -349,6 +352,22 @@ public class PostView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                } catch (UnsupportedLookAndFeelException e) {
+                    // handle exception
+                } catch (ClassNotFoundException e) {
+                    // handle exception
+                } catch (InstantiationException e) {
+                    // handle exception
+                } catch (IllegalAccessException e) {
+                    // handle exception
+                }
                 new PostView().setVisible(true);
             }
         });
