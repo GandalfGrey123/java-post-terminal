@@ -5,11 +5,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.io.IOException;
 
-abstract class RestRequest {
+abstract class Request {
 
     protected HttpURLConnection connection;
 
-    public RestRequest(String uri) throws MalformedURLException, IOException {
+    public Request(String uri) throws MalformedURLException, IOException {
         connection = (HttpURLConnection) new URL(uri).openConnection();
         setRequiredHeaders();
     }
