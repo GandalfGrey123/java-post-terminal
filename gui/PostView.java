@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.awt.*;
 import static javax.swing.GroupLayout.Alignment.*;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
@@ -29,6 +29,8 @@ public class PostView extends javax.swing.JFrame {
     private JPanel customerPanel;
     private JPanel invoicePanel;
     private JTable invoiceScrollPane;
+    private JLabel totalLabel;
+    private JLabel totalPriceLabel;
     private JButton enterButton;
     private JScrollPane invoiceScrollPanel;
     private JButton payButton;
@@ -62,6 +64,8 @@ public class PostView extends javax.swing.JFrame {
         invoicePanel = new JPanel();
         invoiceScrollPanel = new JScrollPane();
         invoiceScrollPane = new JTable();
+        totalLabel = new JLabel();
+        totalPriceLabel = new JLabel();
         paymentPanel = new JPanel();
         paymentLabel = new JLabel();
         payTypeComboBox = new JComboBox();
@@ -163,6 +167,11 @@ public class PostView extends javax.swing.JFrame {
         }
         invoiceScrollPanel.setViewportView(invoiceScrollPane);
 
+        totalLabel.setFont(new Font("Lucida Grande", 1, 13)); 
+        totalLabel.setText("TOTAL");
+        totalPriceLabel.setFont(new Font("Lucida Grande", 1, 13)); 
+        totalPriceLabel.setText("0.00");
+
         GroupLayout invoicePanelLayout = new GroupLayout(invoicePanel);
         invoicePanel.setLayout(invoicePanelLayout);
         invoicePanelLayout.setHorizontalGroup(
@@ -171,16 +180,23 @@ public class PostView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(invoiceScrollPanel, PREFERRED_SIZE, 730, PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
+            .addGroup(TRAILING, invoicePanelLayout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(totalLabel)
+                .addGap(29, 29, 29)
+                .addComponent(totalPriceLabel)
+                .addGap(145, 145, 145))
         );
         invoicePanelLayout.setVerticalGroup(
             invoicePanelLayout.createParallelGroup(LEADING)
             .addGroup(invoicePanelLayout.createSequentialGroup()
                 .addComponent(invoiceScrollPanel, PREFERRED_SIZE, 305, PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(invoicePanelLayout.createParallelGroup(BASELINE)
+                .addComponent(totalLabel)
+                .addComponent(totalPriceLabel)))
         );
-
+        
         paymentPanel.setBorder(BorderFactory.createTitledBorder("Payment"));
-
         paymentLabel.setText("Payment type");
 
         payTypeComboBox.setModel(new DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check"}));
