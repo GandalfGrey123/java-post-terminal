@@ -1,6 +1,11 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static javax.swing.GroupLayout.Alignment.*;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
@@ -14,7 +19,9 @@ public class PostView extends javax.swing.JFrame {
         initComponents();
     }
     
-    // Variables declaration                    
+    // Variables declaration
+    private int cartSize = 0;
+    private int totalPrice = 0;
     private JLabel amountLabel;
     private JTextField amountTextField;
     private JLabel custNameLabel;
@@ -34,6 +41,7 @@ public class PostView extends javax.swing.JFrame {
     private JLabel qtyLabel;
     private JLabel timeTextField;
     private JLabel upcLabel;
+    private DefaultTableModel dtm;
     // End of variables declaration   
     
     /** This method is called from within the constructor to
@@ -60,11 +68,17 @@ public class PostView extends javax.swing.JFrame {
         amountLabel = new JLabel();
         amountTextField = new JTextField();
         payButton = new JButton();
+        dtm = new DefaultTableModel(0,0);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("POST");
 
-        timeTextField.setText("9:34 AM Wednesday, February 13, 2019 (PST)");
+        Date date = new Date();
+        String strDateFormat = "hh:mm:ss aaa, EEEEE, MMMMM d, yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+        String formattedDate= dateFormat.format(date);
+
+        timeTextField.setText(formattedDate);
 
         productsPanel.setBorder(BorderFactory.createTitledBorder("Products"));
 
@@ -141,17 +155,12 @@ public class PostView extends javax.swing.JFrame {
 
         invoicePanel.setBorder(BorderFactory.createTitledBorder("Invoice"));
 
-        invoiceScrollPane.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ITEM", "QTY", "UNIT PRICE", "EXTENDED PRICE"
-            }
-        ));
+        String tableHeader[] = new String[] { "ITEM", "QUANTITY", "UNIT PRICE", "EXTENDED PRICE"};
+        dtm.setColumnIdentifiers(tableHeader);
+        invoiceScrollPane.setModel(dtm);
+        for(int count = 1; count <= 17; count++) {
+            dtm.addRow(new Object[] {null, null, null, null, null, null});
+        }
         invoiceScrollPanel.setViewportView(invoiceScrollPane);
 
         GroupLayout invoicePanelLayout = new GroupLayout(invoicePanel);
@@ -181,7 +190,7 @@ public class PostView extends javax.swing.JFrame {
             }
         });
 
-        amountLabel.setText("Amount");
+        amountLabel.setText(" Amount");
 
         payButton.setText("Pay");
         payButton.addActionListener(new java.awt.event.ActionListener() {
@@ -266,21 +275,56 @@ public class PostView extends javax.swing.JFrame {
         pack();
     }                    
 
-    private void custNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void custNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
     }                                                 
 
-    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //insert and store data into Jtable
+        if(cartSize < 17) {
+            invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
+            invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
+            invoiceScrollPane.setValueAt("get from REST", cartSize, 2);
+            //int test = Integer.parseInt(qtyLabel.getText());
+            // int test2 = Integer.parseInt(amountLabel.getText());
+            // int test3 = test*test2;
+            //String test4 = Integer.toString(test3);
+            //invoiceScrollPane.setValueAt(test4,cartSize,3);
+            invoiceScrollPane.setValueAt("qty*price", cartSize, 3);
+            cartSize++;
+        } else {
+            dtm.addRow(new Object[] {null, null, null, null, null, null});
+            invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
+            invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
+            invoiceScrollPane.setValueAt("get from REST", cartSize, 2);
+            invoiceScrollPane.setValueAt("qty*price", cartSize, 3);
+            cartSize++;
+            System.out.println("Cart full, made more space..");
+        }
+
     }                                        
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+        // clear all fields and send data to REST API database
+        clearFields();
     }                                         
 
     private void payTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-    }                                               
+    }
+
+    private void clearFields() {
+        amountTextField.setText(null);
+        custNameTextField.setText(null);
+        dtm.setRowCount(0);
+        productsComboBox.setSelectedIndex(0);
+        qtyComboBox.setSelectedIndex(0);
+        payTypeComboBox.setSelectedIndex(0);
+        for(int count = 1; count <= 17; count++) {
+            dtm.addRow(new Object[] {null, null, null, null, null, null});
+        }
+    }
     
     /**
      * @param args the command line arguments
