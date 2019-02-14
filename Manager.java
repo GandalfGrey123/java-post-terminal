@@ -12,6 +12,9 @@ public class Manager{
 			return;
 		}
 
+		Cashier cashier = new Cashier();
+		cashier.createSale();
+
 	}
 
 }
