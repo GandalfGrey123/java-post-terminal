@@ -3,7 +3,7 @@ package services;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class Get extends RestRequest {
+public class Get extends Request {
 
     public Get(String uri) throws MalformedURLException, IOException {
         super(uri);
