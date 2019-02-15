@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.geom.RoundRectangle2D;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,7 +86,6 @@ public class PostView extends javax.swing.JFrame {
         timeTextField.setText(formattedDate);
 
         productsPanel.setBorder(BorderFactory.createTitledBorder("Products"));
-
         upcLabel.setText("UPC");
 
         productsComboBox.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -368,7 +368,12 @@ public class PostView extends javax.swing.JFrame {
                 } catch (IllegalAccessException e) {
                     // handle exception
                 }
-                new PostView().setVisible(true);
+                PostView POST = new PostView();
+
+                Rectangle test = POST.getBounds();
+                POST.setMaximizedBounds(test); // making the window resizable without disabling the button
+
+                POST.setVisible(true);
             }
         });
     }                
