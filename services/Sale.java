@@ -5,14 +5,15 @@ import java.io.IOException;
 
 public class Sale {
 
-    String baseUrl = "http://localhost:3000/sales";
+    String baseUrl;
 
-    Sale() {
+    Sale(String baseUrl) {
+        this.baseUrl = baseUrl + "/sales";
     }
 
     String getSales() {
         try {
-            Get req = new Get(baseUrl);
+            Get req = new Get(this.baseUrl);
             String res = req.execute();
             return res;
         } catch (MalformedURLException e) {
@@ -24,7 +25,7 @@ public class Sale {
 
     String newSale(String payload) {
         try {
-            Put req = new Put(baseUrl);
+            Put req = new Put(this.baseUrl);
             String res = req.execute(payload);
             return res;
         } catch (MalformedURLException e) {
