@@ -1,4 +1,4 @@
 .class
 .DS_Store
-.vscode/
-bin/
+.vscode
+bin
