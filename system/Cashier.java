@@ -7,13 +7,10 @@ import com.google.gson.Gson;
 public class Cashier{
 	
 	public void createSale(){
-		Gson gsonSale = new Gson();
-		/*Sale sale = new Sale();
+		Gson gson = new Gson();
+		Sale sale = new Sale("Pablo");
 		sale.setName("Pablo");
-		sale.setAmountTendered(20);
-		
-		String jsonString = gsonSale.toJson(sale); */         
-      	System.out.println(gsonSale); 
+		System.out.println(gson.toJson(sale));
 	}
 	
 }

@@ -1,16 +1,19 @@
 package system;
 
 import java.util.HashMap;
+import com.google.gson.annotations.SerializedName;
+
 
 public class Store{
-	private HashMap<Integer,String> items;
 
-	public Store(HashMap<Integer,String> items){
+	private Item[] items;
+
+	public Store(Item[] items){
 		this.items = items;
 	}
 
-	public String getDescription(int upc){
-		return items.get(upc);
+	public Item[] getItemList(){
+		return items;
 	}
 	
 }
