@@ -1,8 +1,8 @@
-public class ProductService {
+public class Products {
 	
   private String getProductsRoute;
 
-  public ProductService(String baseUrl){
+  public Products(String baseUrl){
     getProductsRoute = baseUrl+"/products";
   } 
   public String getProducts(){
