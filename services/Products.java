@@ -1,3 +1,8 @@
+package services;
+`
+import java.net.MalformedURLException;
+import java.io.IOException;
+
 public class Products {
 	
   private String getProductsRoute;
@@ -8,9 +13,11 @@ public class Products {
   public String getProducts(){
       try{
       String productsJsonString = new Get(getProductsRoute).execute();
-    } catch(Exception ex){
-      ex.printStackTrace();
-    }
+      } catch (MalformedURLException e) {
+           return e.getMessage();
+       } catch (IOException e) {
+           return e.getMessage();
+       }
     return productsJsonString;
   }
 }
