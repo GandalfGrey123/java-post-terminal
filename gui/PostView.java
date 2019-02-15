@@ -370,8 +370,7 @@ public class PostView extends javax.swing.JFrame {
                 }
                 PostView POST = new PostView();
 
-                Rectangle test = POST.getBounds();
-                POST.setMaximizedBounds(test); // making the window resizable without disabling the button
+                POST.setResizable(false);
 
                 POST.setVisible(true);
             }
