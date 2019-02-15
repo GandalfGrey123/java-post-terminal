@@ -1,5 +1,5 @@
 package services;
-`
+
 import java.net.MalformedURLException;
 import java.io.IOException;
 
@@ -18,6 +18,7 @@ public class Products {
        } catch (IOException e) {
            return e.getMessage();
        }
-    return productsJsonString;
+      return null;
+//    return productsJsonString;
   }
 }
