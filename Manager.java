@@ -3,7 +3,6 @@ import services.*;
 import system.*;
 
 import java.util.HashMap;
-import com.google.gson.Gson;
 
 public class Manager{
 
@@ -12,12 +11,11 @@ public class Manager{
 			System.out.println("Error: Manager <REST API URL>");
 			return;
 		}
-		//ProductService productService = new ProductService(arg[1]);
-		Gson gson = new Gson();
-		Item[] items = gson.fromJson("[{\"upc\": \"CX14\",\"description\": \"Wine - Niagara,vqa Reisling\",\"price\": \"$79.75\"}]", Item[].class);
-		System.out.println(items[0].getDescription());
-		/*Cashier cashier = new Cashier();
-		cashier.createSale();*/
+		Store store = new Store(args[0]);
+		//store.printItems();
+		Cashier cashier = new Cashier();
+		Sale sale = cashier.createSale("Pablo",20.0f,"CHECK");
+		System.out.println(cashier.createJson(sale));
 	}
 
 }

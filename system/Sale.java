@@ -9,7 +9,7 @@ class Sale {
 
    private String customer; 
    private Date timeOfSale = new Date();
-   private ArrayList<Item> items = new ArrayList<Item>();
+   private ArrayList<SaleItem> items = new ArrayList<SaleItem>();
    private int total; 
    private Payment tendered;
    private int returned;
@@ -17,28 +17,23 @@ class Sale {
    public Sale(String customer){
       this.customer = customer;
    } 
-   
-   public String getName() { 
-      return customer; 
-   } 
-   
-   public void setName(String customer) { 
-      this.customer = customer; 
-   } 
+
+   public void insertPaymentMethod(String type,float amount){
+      this.tendered = new Payment(type,amount);
+   }
 
    public void insertItem(String upc,int quantity,float price){
-      Item item = new Item(upc,quantity,price);
+      SaleItem item = new SaleItem(upc,quantity,price);
       items.add(item);
    }
 }
 
-class Item{
+class SaleItem{
    private String upc;
    private int quantity;
    private float price;
 
-
-   public Item(String upc,int quantity,float price){
+   public SaleItem(String upc,int quantity,float price){
       this.upc = upc;
       this.quantity = quantity;
       this.price = price;
