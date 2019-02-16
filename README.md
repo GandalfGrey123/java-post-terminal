@@ -15,5 +15,5 @@
 
 ### Instructions:
 1. Download or clone the project
-2. Compile: javac -cp ".:./jars/gson-2.8.5.jar" Manager.java
-3. Run: java -cp ".:./jars/gson-2.8.5.jar" Manager \<Database URL\> 
+2. Compile: `javac -cp ".:./jars/gson-2.8.5.jar" Manager.java`
+3. Run: `java -cp ".:./jars/gson-2.8.5.jar" Manager \<Database URL\>`
