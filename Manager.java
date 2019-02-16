@@ -12,9 +12,11 @@ public class Manager{
 			return;
 		}
 		Store store = new Store(args[0]);
-		//store.printItems();
+		Item[] items = store.getItemList();
 		Cashier cashier = new Cashier();
-		Sale sale = cashier.createSale("Pablo",20.0f,"CHECK");
+		Sale sale = cashier.createSale("Pablo");
+		cashier.insertItemToSale(sale,items[0].getUpc(),3,items[0].getPrice());
+		cashier.insertPaymentMethod("CHECK",300.0f);
 		System.out.println(cashier.createJson(sale));
 	}
 

@@ -10,20 +10,22 @@ public class Sale {
    private String customer; 
    private Date timeOfSale = new Date();
    private ArrayList<SaleItem> items = new ArrayList<SaleItem>();
-   private int total; 
+   private float total = 0.0f; 
    private Payment tendered;
-   private int returned;
+   private float returned = 0.0f;
    
    public Sale(String customer){
       this.customer = customer;
    } 
 
    public void insertPaymentMethod(String type,float amount){
-      this.tendered = new Payment(type,amount);
+      tendered = new Payment(type,amount);
+      returned = amount - total;
    }
 
    public void insertItem(String upc,int quantity,float price){
       SaleItem item = new SaleItem(upc,quantity,price);
+      total += quantity*price;
       items.add(item);
    }
 }
