@@ -3,11 +3,11 @@ package services;
 import java.net.MalformedURLException;
 import java.io.IOException;
 
-public class Sale {
+public class SaleService {
 
     String baseUrl;
 
-    Sale(String baseUrl) {
+    SaleService(String baseUrl) {
         this.baseUrl = baseUrl + "/sales";
     }
 
