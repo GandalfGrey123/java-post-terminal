@@ -6,22 +6,21 @@ import com.google.gson.Gson;
 
 public class Cashier{
 	
-	public Sale createSale(String customer, float amount, String type){
-		boolean accepted;
+	public Sale createSale(String customer){
 		Sale sale = new Sale(customer);
-		sale.insertPaymentMethod(type,amount);
+		return sale;
+	}
+
+	public void insertPaymentMethod(String type, float amount, int cardNumber){ //CREDIT
+		boolean accepted = checkCredit(amount,cardNumber);
+	}
+
+	public void insertPaymentMethod(String type, float amount){ //CASH OR CHECK
+		boolean accepted = true;
 		if(type.equals("CHECK"))
 			accepted = checkCheck(amount);
-
-		return sale;
 	}
 
-	public Sale createSale(String customer, float amount, String type, int cardNumber){
-		Sale sale = new Sale(customer);
-		sale.insertPaymentMethod(type,amount);
-		boolean accepted = checkCredit(cardNumber,cardNumber);
-		return sale;
-	}
 
 	public void insertItemToSale(Sale sale,String upc, int quantity, float price){
 		sale.insertItem(upc,quantity,price);

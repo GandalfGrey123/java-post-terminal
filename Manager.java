@@ -3,6 +3,8 @@ import services.*;
 import system.*;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Manager{
 
@@ -11,11 +13,20 @@ public class Manager{
 			System.out.println("Error: Manager <REST API URL>");
 			return;
 		}
+
 		Store store = new Store(args[0]);
-		//store.printItems();
+		Item[] items = store.getItemList();
 		Cashier cashier = new Cashier();
-		Sale sale = cashier.createSale("Pablo",20.0f,"CHECK");
-		System.out.println(cashier.createJson(sale));
+		startGui(items);
 	}
 
+	public static void startGui(Item[] items){
+		List<String> productDescriptions = new ArrayList<>();
+		for (Item item : items) {
+		    productDescriptions.add(item.getDescription());
+		}
+		String[] itemNames = new String[productDescriptions.size()];
+		itemNames = productDescriptions.toArray(itemNames);
+		PostView.start(itemNames);
+	}
 }
