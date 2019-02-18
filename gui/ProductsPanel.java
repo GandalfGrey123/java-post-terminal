@@ -7,6 +7,8 @@ import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
+import java.util.HashMap;
+
 
 import static gui.PostView.*;
 import static gui.InvoicePanel.*; // products get sent to the invoice panel
@@ -19,7 +21,7 @@ public class ProductsPanel extends JPanel {
     protected static JComboBox qtyComboBox;
     private JButton enterButton;
 
-    public ProductsPanel(String[] items) {
+    public ProductsPanel(HashMap<String, Item> items) {
 
         upcLabel = new JLabel();
         productsComboBox = new JComboBox();
@@ -30,7 +32,7 @@ public class ProductsPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Products"));
         upcLabel.setText("UPC");
 
-        productsComboBox.setModel(new DefaultComboBoxModel(items));
+        productsComboBox.setModel(new DefaultComboBoxModel(items.values().toArray()));
 
         enterButton.setText("Enter");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
