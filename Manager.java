@@ -13,12 +13,12 @@ public class Manager{
 			System.out.println("Error: Manager <REST API URL>");
 			return;
 		}
-
 		Store store = new Store(args[0]);
 		Item[] items = store.getItemList();
 		Cashier cashier = new Cashier();
 		startGui(items);
 	}
+
 
 	public static void startGui(Item[] items){
 		List<String> productDescriptions = new ArrayList<>();

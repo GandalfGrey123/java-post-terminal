@@ -150,12 +150,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/system/Sale.java" />
-        <option value="$PROJECT_DIR$/services/Test.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/services/PaymentService.java" />
         <option value="$PROJECT_DIR$/services/Payment.java" />
+        <option value="$PROJECT_DIR$/Manager.java" />
+        <option value="$PROJECT_DIR$/services/Test.java" />
+        <option value="$PROJECT_DIR$/system/Sale.java" />
+        <option value="$PROJECT_DIR$/services/PaymentService.java" />
         <option value="$PROJECT_DIR$/services/Post.java" />
+        <option value="$PROJECT_DIR$/services/Response.java" />
       </list>
     </option>
   </component>
@@ -207,7 +209,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550443688046" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550451940060" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -221,14 +223,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Manager" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Manager" />
+      <module name="post-assignment-new-group-6" />
+      <option name="PROGRAM_PARAMETERS" value="http://localhost:3000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="services.Test" />
       <module name="post-assignment-new-group-6" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Manager" />
+      <item itemvalue="Application.Test" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -256,7 +270,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3296146" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -304,13 +318,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -320,25 +327,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/Request.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="18" />
+        <state relative-caret-position="334">
+          <caret line="50" column="6" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/Put.java">
+    <entry file="file://$PROJECT_DIR$/system/Store.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#168#169#0" expanded="true" />
+            <element signature="e#217#218#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/Get.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -349,15 +356,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/services/Get.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/Put.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/services/PaymentService.java" />
     <entry file="file://$PROJECT_DIR$/services/Payment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        <state relative-caret-position="180">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui/PaymentPanel.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/Reader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/io/InputStreamReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/PaymentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#248#249#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -369,7 +412,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/Sale.java">
+    <entry file="file://$PROJECT_DIR$/services/Response.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
@@ -386,14 +429,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/SaleService.java">
+    <entry file="file://$PROJECT_DIR$/system/Sale.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="25" column="33" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="33" />
+        <state relative-caret-position="567">
+          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#168#169#0" expanded="true" />
-            <element signature="e#217#218#0" expanded="true" />
+            <element signature="e#2062#2063#0" expanded="true" />
+            <element signature="e#2086#2087#0" expanded="true" />
+            <element signature="e#2116#2117#0" expanded="true" />
+            <element signature="e#2142#2143#0" expanded="true" />
           </folding>
         </state>
       </provider>

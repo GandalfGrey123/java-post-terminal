@@ -1,5 +1,7 @@
 package services;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -36,9 +38,12 @@ public class Response {
             // Not clear what was happening, so noting here:
             // Non 200s raise IOException when getResponseCode invoked
             // So we want to get the error stream instead to read the body
-            this.bodyReader = new BufferedReader(
-                    new InputStreamReader(connection.getErrorStream())
-            );
+            if(connection.getErrorStream()!= null){
+                this.bodyReader = new BufferedReader(
+                        new InputStreamReader(connection.getErrorStream())
+                );
+            }
+
         }
     }
 

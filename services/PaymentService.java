@@ -2,22 +2,20 @@ package services;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
-public class Payment{
+public class PaymentService{
 	//End point to credit and check
     String baseUrl;
 
-    Payment(String baseUrl) {
-        this.baseUrl = baseUrl + "/payment";
+    public PaymentService(String baseUrl) {
+        this.baseUrl = baseUrl + "/payments";
     }
-    public String check(String payload){
-        this.baseUrl = this.baseUrl + "/check";
-        try {
-            Post postRequest = new Post(this.baseUrl);
-            String response = postRequest.execute();
-        }
+    public void setPaymentType(String type){
+        this.baseUrl = this.baseUrl + type;
+//        System.out.println(this.baseUrl);
+    }
 
-    }
 
     String getSales() {
         try {
@@ -31,11 +29,11 @@ public class Payment{
         }
     }
 
-    String newPayment(String payload) {
+    public String newPayment(String payload) {
+
         try {
-            Put req = new Put(this.baseUrl);
-            String res = req.execute(payload);
-            return res;
+            Post req = new Post(this.baseUrl);
+            return req.execute(payload);
         } catch (MalformedURLException e) {
             return e.getMessage();
         } catch (IOException e) {
