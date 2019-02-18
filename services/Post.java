@@ -24,11 +24,11 @@ public class Post extends Request {
         Response response = new Response(connection);
         connection.disconnect();
         if(response.getStatusCode() == 400){
-            System.out.println("Getting Body");
-//            return response.getBody();
-            return Integer.toString(response.getStatusCode());
+
+            return response.getBody();
+//            return Integer.toString(response.getStatusCode());
         }else{
-            System.out.println("Getting Code");
+
             return Integer.toString(response.getStatusCode());
         }
     }
