@@ -17,7 +17,10 @@ public class Response {
         this.result = "";
         this.connection = connection;
         this.createReader();
-        this.read();
+        if(statusCode!=406){
+            this.read();
+        }
+//        this.read();
     }
 
     public int getStatusCode() {
@@ -31,6 +34,10 @@ public class Response {
     private void createReader() {
         try {
             this.statusCode = connection.getResponseCode();
+            if(connection.getResponseCode() == 406){
+                return;
+            }
+//            System.out.println(connection.getResponseCode());
             this.bodyReader = new BufferedReader(
                     new InputStreamReader(connection.getInputStream())
             );
@@ -38,18 +45,15 @@ public class Response {
             // Not clear what was happening, so noting here:
             // Non 200s raise IOException when getResponseCode invoked
             // So we want to get the error stream instead to read the body
-            if(connection.getErrorStream()!= null){
-                this.bodyReader = new BufferedReader(
-                        new InputStreamReader(connection.getErrorStream())
-                );
-            }
+            this.bodyReader = new BufferedReader(
+                    new InputStreamReader(connection.getErrorStream())
+            );
 
         }
     }
 
     private void read() throws IOException {
         String line;
-
         while ((line = bodyReader.readLine()) != null) {
             this.result = this.result + line;
         }
