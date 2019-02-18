@@ -1,6 +1,9 @@
 package gui;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
@@ -17,6 +20,8 @@ public class PaymentPanel extends JPanel {
     protected static JComboBox payTypeComboBox;
     private JLabel amountLabel;
     protected static JTextField amountTextField;
+    private JLabel creditCardLabel;
+    protected static JTextField creditCardTextField;
     private JButton payButton;
 
 
@@ -26,7 +31,31 @@ public class PaymentPanel extends JPanel {
         payTypeComboBox = new JComboBox();
         amountLabel = new JLabel();
         amountTextField = new JTextField();
+        creditCardLabel = new JLabel();
+        creditCardTextField = new JTextField();
         payButton = new JButton();
+
+        creditCardLabel.setVisible(false);
+        creditCardTextField.setVisible(false);
+
+        payTypeComboBox.addActionListener(new ActionListener() {
+
+                                              @Override
+                                              public void actionPerformed(ActionEvent ae) {
+                                                  // check whether there is any selection
+                                                  if (payTypeComboBox.getSelectedIndex() == 1) {
+                                                      creditCardLabel.setVisible(true);
+                                                      creditCardTextField.setVisible(true);
+                                                      PaymentPanel.this.revalidate();
+                                                      PaymentPanel.this.repaint();
+                                                  } else {
+                                                      creditCardLabel.setVisible(false);
+                                                      creditCardTextField.setVisible(false);
+                                                      PaymentPanel.this.revalidate();
+                                                      PaymentPanel.this.repaint();
+                                                  }
+                                              }
+            });
 
 
         setBorder(BorderFactory.createTitledBorder("Payment"));
@@ -40,6 +69,8 @@ public class PaymentPanel extends JPanel {
         });
 
         amountLabel.setText(" Amount");
+        creditCardLabel.setText("Credit Card Number: ");
+
 
         payButton.setText("Pay");
         payButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,10 +94,14 @@ public class PaymentPanel extends JPanel {
                                                 .addPreferredGap(RELATED)
                                                 .addComponent(amountTextField, PREFERRED_SIZE, 95, PREFERRED_SIZE))
                                         .addGroup(TRAILING, paymentPanelLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                //.addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(creditCardLabel)
+                                                .addPreferredGap(RELATED)
+                                                .addComponent(creditCardTextField, PREFERRED_SIZE, 120, PREFERRED_SIZE)
                                                 .addComponent(payButton)))
                                 .addContainerGap())
         );
+        paymentPanelLayout.linkSize(SwingConstants.HORIZONTAL, creditCardLabel, creditCardTextField);
         paymentPanelLayout.setVerticalGroup(
                 paymentPanelLayout.createParallelGroup(LEADING)
                         .addGroup(paymentPanelLayout.createSequentialGroup()
@@ -76,13 +111,16 @@ public class PaymentPanel extends JPanel {
                                         .addComponent(payTypeComboBox, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(amountLabel)
                                         .addComponent(amountTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(payButton)
+                                .addGroup(paymentPanelLayout.createParallelGroup(BASELINE)
+                                        .addComponent(creditCardLabel)
+                                        .addComponent(creditCardTextField, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                                        .addComponent(payButton))
                                 .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
 
     }
+
 
     private static void payButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // clear all fields and send data to REST API database
