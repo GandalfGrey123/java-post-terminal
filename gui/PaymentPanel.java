@@ -3,7 +3,6 @@ package gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
@@ -14,54 +13,50 @@ import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
 
 import static gui.PostView.clearFields;
 
-public class PaymentPanel extends JPanel {
+class PaymentPanel extends JPanel {
 
-    private JLabel paymentLabel;
-    protected static JComboBox payTypeComboBox;
-    private JLabel amountLabel;
-    protected static JTextField amountTextField;
+    static JComboBox<String> payTypeComboBox;
+    static JTextField amountTextField;
     private JLabel creditCardLabel;
-    protected static JTextField creditCardTextField;
-    private JButton payButton;
+    static JTextField creditCardTextField;
 
 
-    public PaymentPanel() {
+    PaymentPanel() {
 
-        paymentLabel = new JLabel();
-        payTypeComboBox = new JComboBox();
-        amountLabel = new JLabel();
+        JLabel paymentLabel = new JLabel();
+        payTypeComboBox = new JComboBox<>();
+        JLabel amountLabel = new JLabel();
         amountTextField = new JTextField();
         creditCardLabel = new JLabel();
         creditCardTextField = new JTextField();
-        payButton = new JButton();
+        JButton payButton = new JButton();
 
         creditCardLabel.setVisible(false);
         creditCardTextField.setVisible(false);
 
         payTypeComboBox.addActionListener(new ActionListener() {
-
-                                              @Override
-                                              public void actionPerformed(ActionEvent ae) {
-                                                  // check whether there is any selection
-                                                  if (payTypeComboBox.getSelectedIndex() == 1) {
-                                                      creditCardLabel.setVisible(true);
-                                                      creditCardTextField.setVisible(true);
-                                                      PaymentPanel.this.revalidate();
-                                                      PaymentPanel.this.repaint();
-                                                  } else {
-                                                      creditCardLabel.setVisible(false);
-                                                      creditCardTextField.setVisible(false);
-                                                      PaymentPanel.this.revalidate();
-                                                      PaymentPanel.this.repaint();
-                                                  }
-                                              }
-            });
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                // check whether there is any selection
+                if (payTypeComboBox.getSelectedIndex() == 1) {
+                    creditCardLabel.setVisible(true);
+                    creditCardTextField.setVisible(true);
+                    PaymentPanel.this.revalidate();
+                    PaymentPanel.this.repaint();
+                } else {
+                    creditCardLabel.setVisible(false);
+                    creditCardTextField.setVisible(false);
+                    PaymentPanel.this.revalidate();
+                    PaymentPanel.this.repaint();
+                }
+            }
+        });
 
 
         setBorder(BorderFactory.createTitledBorder("Payment"));
         paymentLabel.setText("Payment type");
 
-        payTypeComboBox.setModel(new DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check"}));
+        payTypeComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Cash", "Credit", "Check"}));
         payTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payTypeComboBoxActionPerformed(evt);

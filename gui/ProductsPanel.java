@@ -10,26 +10,23 @@ import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static gui.PostView.*;
 import static gui.InvoicePanel.*; // products get sent to the invoice panel
 
-public class ProductsPanel extends JPanel {
+class ProductsPanel extends JPanel {
 
-    private JLabel upcLabel;
-    protected static JComboBox productsComboBox;
-    private JLabel qtyLabel;
-    protected static JComboBox qtyComboBox;
-    private JButton enterButton;
+    static JComboBox<String> productsComboBox;
+    static JComboBox<String> qtyComboBox;
 
-    public ProductsPanel() {
+    ProductsPanel() {
 
-        upcLabel = new JLabel();
-        productsComboBox = new JComboBox();
-        qtyLabel = new JLabel();
-        qtyComboBox = new JComboBox();
-        enterButton = new JButton();
+        JLabel upcLabel = new JLabel();
+        productsComboBox = new JComboBox<>();
+        JLabel qtyLabel = new JLabel();
+        qtyComboBox = new JComboBox<>();
+        JButton enterButton = new JButton();
 
         setBorder(BorderFactory.createTitledBorder("Products"));
         upcLabel.setText("UPC");
 
-        productsComboBox.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productsComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         enterButton.setText("Enter");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -40,7 +37,7 @@ public class ProductsPanel extends JPanel {
 
         qtyLabel.setText("Qty");
 
-        qtyComboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
+        qtyComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         GroupLayout productsPanelLayout = new GroupLayout(this);
 
@@ -77,7 +74,7 @@ public class ProductsPanel extends JPanel {
         if(cartSize < 17) {
             addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
         } else {
-            dtm.addRow(new Object[] {null, null, null, null, null, null});
+            addRow();
             addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
             System.out.println("Cart full, made more space..");
         }
@@ -91,6 +88,8 @@ public class ProductsPanel extends JPanel {
         invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
         invoiceScrollPane.setValueAt(price, cartSize, 2);
         invoiceScrollPane.setValueAt(extPrice, cartSize, 3);
+        totalPrice += 1.00;
+        totalPriceLabel.setText("$ "+df.format(totalPrice));
         cartSize++;
 
     }

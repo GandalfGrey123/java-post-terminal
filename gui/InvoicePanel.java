@@ -3,44 +3,51 @@ package gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.text.DecimalFormat;
 
+import static gui.PostView.totalPrice;
+import static gui.PostView.df;
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.Alignment.TRAILING;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 
-public class InvoicePanel extends JPanel {
+class InvoicePanel extends JPanel {
 
-    protected static DefaultTableModel dtm;
-    protected static JTable invoiceScrollPane;
-    private JScrollPane invoiceScrollPanel;
-    protected static JLabel totalLabel;
-    private JLabel totalPriceLabel;
-    private String tableHeader[] = new String[] { "ITEM", "QUANTITY", "UNIT PRICE", "EXTENDED PRICE"};
+    static DefaultTableModel dtm;
+    static JTable invoiceScrollPane;
+    static JLabel totalPriceLabel;
 
-    public InvoicePanel() {
-        dtm = new DefaultTableModel(0,0);
-        invoiceScrollPane = new JTable();
-        invoiceScrollPanel = new JScrollPane();
-        totalLabel = new JLabel();
-        totalPriceLabel = new JLabel();
-
+    InvoicePanel() {
         setBorder(BorderFactory.createTitledBorder("Invoice"));
 
+        dtm = new DefaultTableModel(0,0);
+        invoiceScrollPane = new JTable();
+        totalPriceLabel = new JLabel();
+
+        totalPriceLabel.setFont(new Font("Lucida Grande", 1, 13));
+        totalPrice = 0.00;
+        df = new DecimalFormat("#0.00");
+        totalPriceLabel.setText("$ "+df.format(totalPrice));
+
+
+
+        String[] tableHeader = new String[]{"ITEM", "QUANTITY", "UNIT PRICE", "EXTENDED PRICE"};
         dtm.setColumnIdentifiers(tableHeader);
         invoiceScrollPane.setModel(dtm);
         for(int count = 1; count <= 17; count++) {
-            dtm.addRow(new Object[] {null, null, null, null, null, null});
+            addRow();
         }
+
+        JScrollPane invoiceScrollPanel = new JScrollPane();
         invoiceScrollPanel.setViewportView(invoiceScrollPane);
 
+        JLabel totalLabel = new JLabel();
         totalLabel.setFont(new Font("Lucida Grande", 1, 13));
         totalLabel.setText("TOTAL");
-        totalPriceLabel.setFont(new Font("Lucida Grande", 1, 13));
-        resetTotal();
+
 
         GroupLayout invoicePanelLayout = new GroupLayout(this);
-
         setLayout(invoicePanelLayout);
 
         invoicePanelLayout.setHorizontalGroup(
@@ -67,8 +74,8 @@ public class InvoicePanel extends JPanel {
 
     }
 
-    protected static void resetTotal() {
-        totalLabel.setText("0.00");
+    static void addRow() {
+        dtm.addRow(new Object[] {null, null, null, null});
     }
 
 }

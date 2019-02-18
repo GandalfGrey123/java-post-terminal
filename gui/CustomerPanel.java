@@ -9,16 +9,16 @@ import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
 
-public class CustomerPanel extends JPanel {
+class CustomerPanel extends JPanel {
 
-    private JLabel custNameLabel;
-    protected static JTextField custNameTextField;
+    static JTextField custNameTextField;
 
-    public CustomerPanel()  {
-        custNameLabel = new JLabel();
+    CustomerPanel()  {
+        setBorder(BorderFactory.createTitledBorder("Customer"));
+        
         custNameTextField = new JTextField();
 
-        setBorder(BorderFactory.createTitledBorder("Customer"));
+        JLabel custNameLabel = new JLabel();
         custNameLabel.setText("Name ");
 
         addActionListener(new java.awt.event.ActionListener() {
