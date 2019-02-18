@@ -1,4 +1,7 @@
 package system;
+import com.google.gson.Gson;
+import services.PaymentService;
+
 import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +22,8 @@ public class Sale {
    } 
 
    public void insertPaymentMethod(String type,float amount){
-      tendered = new Payment(type,amount);
+      tendered = new Payment("CHECK",amount);
+      tendered.validatePayment();
       returned = amount - total;
    }
 
@@ -43,12 +47,38 @@ class SaleItem{
 }
 
 class Payment{
-   private String type;
+   private transient String type;
+   private String cardNumber;
    private float amount;
 
-   public Payment(String type,float amount){
+
+   public Payment(String type, float amount){
       this.type = type;
       this.amount = amount;
+   }
+   public Payment(float amount){
+      this.type = "CHECK";
+      this.amount = amount;
+   }
+   public boolean validatePayment(){
+      String BASE_URL = "http://localhost:3000";
+      PaymentService paymentService = new PaymentService(BASE_URL);
+      switch (type){
+         case "CHECK":
+            System.out.println("Payment type: Check");
+            paymentService.setPaymentType("/check");
+            break;
+         case "CREDIT":
+            paymentService.setPaymentType("/credit");
+            break;
+      }
+      System.out.println(paymentService.newPayment(createRequest()));
+//      paymentService.newPayment(createRequest());
+      return false;
+   }
+   private String createRequest(){
+      Gson postBody = new Gson();
+      return postBody.toJson(this);
    }
 
    public String getType(){
@@ -58,4 +88,6 @@ class Payment{
    public float getAmount(){
       return amount;
    }
+
+
 }
