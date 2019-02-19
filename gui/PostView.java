@@ -53,6 +53,7 @@ public class PostView extends javax.swing.JFrame {
         amountTextField.setText(null);
         CustomerPanel.custNameTextField.setText(null);
         InvoicePanel.dtm.setRowCount(0);
+        productsPanel.cleanShoppingCart();
         productsComboBox.setSelectedIndex(0);
         qtyComboBox.setSelectedIndex(0);
         payTypeComboBox.setSelectedIndex(0);

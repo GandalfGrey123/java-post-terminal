@@ -74,7 +74,6 @@ public class ProductsPanel extends JPanel {
     }
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        System.out.println(productsComboBox.getSelectedItem());
         if(cartSize < 17) {
             addToCart((Item)productsComboBox.getSelectedItem(),Integer.parseInt(qtyComboBox.getSelectedItem().toString()));
         } else {
@@ -96,5 +95,9 @@ public class ProductsPanel extends JPanel {
 
     public ArrayList<SaleItem> getShoppingCart(){
         return shoppingCart;
+    }
+
+    public void cleanShoppingCart(){
+        shoppingCart = new ArrayList<SaleItem>() ;
     }
 }
