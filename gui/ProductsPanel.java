@@ -1,5 +1,7 @@
 package gui;
 
+import system.Item;
+
 import javax.swing.*;
 
 import static javax.swing.GroupLayout.Alignment.BASELINE;
@@ -15,13 +17,16 @@ class ProductsPanel extends JPanel {
 
     static JComboBox<String> productsComboBox;
     static JComboBox<String> qtyComboBox;
+    static JLabel upcLabel;
+    static JButton enterButton;
+
 
     public ProductsPanel(HashMap<String, Item> items) {
 
         upcLabel = new JLabel();
         JComboBox<Item> productsComboBox = new JComboBox<Item>();
         items.forEach((upc,item) -> productsComboBox.addItem(item));
-        qtyLabel = new JLabel();
+        JLabel qtyLabel = new JLabel();
         qtyComboBox = new JComboBox();
         enterButton = new JButton();
 
@@ -73,20 +78,20 @@ class ProductsPanel extends JPanel {
             //addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
         } else {
             dtm.addRow(new Object[] {null, null, null, null, null, null});
-            //addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
+            addToCart(productsComboBox.getSelectedItem(), Float.parseFloat((String)qtyComboBox.getSelectedItem()));
             System.out.println("Cart full, made more space..");
         }
 
     }
 
-    private void addToCart(Item item, int quantity) {
-        /*String price = item.getPrice();
-        String extPrice = item.getPrice();
+    private void addToCart(Object item, Object quantity) {
+        String price = Float.toString(item.getPrice());
+        String extPrice = Float.toString(item.getPrice());
         invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
         invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
         invoiceScrollPane.setValueAt(price, cartSize, 2);
         invoiceScrollPane.setValueAt(extPrice, cartSize, 3);
-        cartSize++;*/
+        cartSize++;
 
     }
 

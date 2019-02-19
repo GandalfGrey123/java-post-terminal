@@ -1,5 +1,8 @@
 package gui;
 
+import system.Cashier;
+import system.Item;
+
 import javax.swing.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,7 +36,7 @@ public class PostView extends javax.swing.JFrame {
     private Cashier cashier;
     private JLabel timeTextField;
 
-    public PostView(HashMap<String, Item> items,Cashier cashier) {
+    public PostView(HashMap<String, Item> items, Cashier cashier) {
         this.cashier = cashier;
         initComponents(items);
     }  
@@ -50,7 +53,7 @@ public class PostView extends javax.swing.JFrame {
         productsComboBox.setSelectedIndex(0);
         qtyComboBox.setSelectedIndex(0);
         payTypeComboBox.setSelectedIndex(0);
-        invoicePanel.resetTotal(); // resets total price (idk if this should be in InvoicePanel)
+//        invoicePanel.resetTotal(); // resets total price (idk if this should be in InvoicePanel)
         cartSize = 0;
         for(int count = 1; count <= 17; count++) {
             InvoicePanel.dtm.addRow(new Object[] {null, null, null, null, null, null});

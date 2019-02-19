@@ -4,9 +4,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import static gui.PostView.totalPrice;
-import static gui.PostView.df;
+//import static gui.PostView.df;
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.Alignment.TRAILING;
@@ -26,9 +27,9 @@ class InvoicePanel extends JPanel {
         totalPriceLabel = new JLabel();
 
         totalPriceLabel.setFont(new Font("Lucida Grande", 1, 13));
-        totalPrice = 0.00;
-        df = new DecimalFormat("#0.00");
-        totalPriceLabel.setText("$ "+df.format(totalPrice));
+        totalPrice = 0;
+        NumberFormat df = new DecimalFormat("#0.00");
+        totalPriceLabel.setText("$ "+ df.format(totalPrice));
 
 
 
