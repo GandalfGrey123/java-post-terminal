@@ -34,7 +34,7 @@ public class ProductsPanel extends JPanel {
         enterButton = new JButton();
 
         setBorder(BorderFactory.createTitledBorder("Products"));
-        upcLabel.setText("UPC");
+        upcLabel.setText("Item");
         enterButton.setText("Enter");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
