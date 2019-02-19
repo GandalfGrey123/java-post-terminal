@@ -1,5 +1,7 @@
 package system;
-import java.util.HashMap;
+import com.google.gson.Gson;
+import services.PaymentService;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
@@ -18,8 +20,17 @@ public class Sale {
       this.customer = customer;
    } 
 
-   public void insertPaymentMethod(String type,float amount){
-      tendered = new Payment(type,amount);
+   public void insertPaymentMethod(String type, float amount){
+      if(type.equals("check")){
+         tendered = new Payment(amount);
+      }else{
+         tendered = new Payment(1234, amount);
+      }
+
+//      tendered = new Payment(1234, amount);
+      tendered.validatePayment();
+      System.out.println(tendered.getSuccessMsg());
+
       returned = amount - total;
    }
 
@@ -43,14 +54,53 @@ class SaleItem{
 }
 
 class Payment{
-   private String type;
+   private transient String type;
+   private int cardNumber;
    private float amount;
+   private boolean successful = false;
+   private String message;
 
-   public Payment(String type,float amount){
-      this.type = type;
-      this.amount = amount;
+
+   public Payment(int cardNumber, float creditAmount){
+      this.type = "CREDIT";
+      this.amount = creditAmount;
+      this.cardNumber = cardNumber;
    }
+   public Payment(float checkAmount){
+      this.type = "CHECK";
+      this.amount = checkAmount;
+   }
+   public boolean validatePayment(){
+      String BASE_URL = "http://localhost:3000";
+      PaymentService paymentService = new PaymentService(BASE_URL);
+      switch (type){
+         case "CHECK":
+//            System.out.println("Payment type: Check");
+            paymentService.setPaymentType("/check");
+            break;
+         case "CREDIT":
+            paymentService.setPaymentType("/credit");
+            break;
+      }
+      parseValidation(paymentService.newPayment(createRequest()));
+//      paymentService.newPayment(createRequest());
+      return successful;
+   }
+   private String createRequest(){
+      Gson postBody = new Gson();
+      return postBody.toJson(this);
+   }
+   private void parseValidation(String serverValidation){
+      if(serverValidation.equals("202")){
+         message = "Payment Successful";
+         successful = true;
+      }else if(serverValidation.equals("406")){
+         message = "Payment Denied";
+      }else{
+         message = serverValidation;
+      }
 
+   }
    public String getType(){
       return type;
    }
@@ -58,4 +108,12 @@ class Payment{
    public float getAmount(){
       return amount;
    }
+   public String getSuccessMsg(){
+      return this.message;
+   }
+   public Boolean isSuccessful(){
+      return this.successful;
+   }
+
+
 }
