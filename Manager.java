@@ -31,7 +31,7 @@ public class Manager{
                 } catch (Exception e) {
                     // handle exception
                 }
-                PostView post = new PostView(store.getItemList(),saleService);
+                PostView post = new PostView(store,saleService);
                 post.setResizable(false);
                 post.setVisible(true);
             }

@@ -30,11 +30,13 @@ public class PostView extends javax.swing.JFrame {
     protected static int cartSize = 0;
     protected static int totalPrice = 0;
     private JLabel timeTextField;
-    SaleService saleService;
+    private SaleService saleService;
+    private Store store;
 
-    public PostView(HashMap<String, Item> items,SaleService saleService) {
+    public PostView(Store store,SaleService saleService) {
         this.saleService = saleService;
-        initComponents(items);
+        this.store = store;
+        initComponents(store.getItemList());
     }  
 
     protected void createSale() {
@@ -43,6 +45,8 @@ public class PostView extends javax.swing.JFrame {
         sale.insertPaymentMethod(paymentPanel.getPaymentMethod(),paymentPanel.getAmountTendered());
         System.out.println(sale.createJson());
         saleService.newSale(sale.createJson());
+        store.addToSalesLog(sale);
+        store.printSalesLog();
     }
 
     protected static void clearFields() {
@@ -52,7 +56,7 @@ public class PostView extends javax.swing.JFrame {
         productsComboBox.setSelectedIndex(0);
         qtyComboBox.setSelectedIndex(0);
         payTypeComboBox.setSelectedIndex(0);
-        invoicePanel.resetTotal(); // resets total price (idk if this should be in InvoicePanel)
+        invoicePanel.resetTotal(); 
         cartSize = 0;
         for(int count = 1; count <= 17; count++) {
             InvoicePanel.dtm.addRow(new Object[] {null, null, null, null, null, null});

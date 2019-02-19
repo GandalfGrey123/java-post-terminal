@@ -60,6 +60,10 @@ public class Payment{
       return type;
    }
 
+   public int getCreditCardNumber(){
+      return cardNumber;
+   }
+
    public float getAmount(){
       return amount;
    }
