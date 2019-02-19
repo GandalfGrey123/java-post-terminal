@@ -14,11 +14,11 @@ public class Manager{
 		}
 		Manager manager = new Manager();
 		Store store = new Store(args[0]);
-		Cashier cashier = new Cashier();
-		manager.startGui(store,cashier);
+		SaleService saleService = new SaleService(args[0]);
+		manager.startGui(store,saleService);
 	}
 
-	public void startGui(Store store,Cashier cashier){
+	public void startGui(Store store,SaleService saleService){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -31,7 +31,7 @@ public class Manager{
                 } catch (Exception e) {
                     // handle exception
                 }
-                PostView post = new PostView(store.getItemList(),cashier);
+                PostView post = new PostView(store.getItemList(),saleService);
                 post.setResizable(false);
                 post.setVisible(true);
             }

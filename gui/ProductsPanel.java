@@ -8,6 +8,7 @@ import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import static gui.PostView.*;
 import static gui.InvoicePanel.*; // products get sent to the invoice panel
@@ -19,14 +20,15 @@ public class ProductsPanel extends JPanel {
     private JLabel qtyLabel;
     protected static JComboBox qtyComboBox;
     private JButton enterButton;
-    private HashMap<String, Item> items;
+    private HashMap<String, Item> dropdownMenuItems;
+    private ArrayList<SaleItem> shoppingCart = new ArrayList<SaleItem>();
 
-    public ProductsPanel(HashMap<String, Item> items) {
-        this.items = items;
+    public ProductsPanel(HashMap<String, Item> dropdownMenuItems) {
+        this.dropdownMenuItems = dropdownMenuItems;
 
         upcLabel = new JLabel();
         productsComboBox = new JComboBox<Item>();
-        items.forEach((upc,item) -> productsComboBox.addItem(item));
+        dropdownMenuItems.forEach((upc,item) -> productsComboBox.addItem(item));
         qtyLabel = new JLabel();
         qtyComboBox = new JComboBox();
         enterButton = new JButton();
@@ -69,8 +71,6 @@ public class ProductsPanel extends JPanel {
                                         .addComponent(enterButton))
                                 .addContainerGap(16, Short.MAX_VALUE))
         );
-
-
     }
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +82,6 @@ public class ProductsPanel extends JPanel {
             addToCart((Item)productsComboBox.getSelectedItem(),Integer.parseInt(qtyComboBox.getSelectedItem().toString()));
             System.out.println("Cart full, made more space..");
         }
-
     }
 
     private void addToCart(Item item, int quantity) {
@@ -91,6 +90,11 @@ public class ProductsPanel extends JPanel {
         invoiceScrollPane.setValueAt(quantity, cartSize, 1);
         invoiceScrollPane.setValueAt(item.getPrice(), cartSize, 2);
         invoiceScrollPane.setValueAt(extendedPrice, cartSize, 3);
+        shoppingCart.add(new SaleItem(item.getUpc(),quantity,extendedPrice));
         cartSize++;
+    }
+
+    public ArrayList<SaleItem> getShoppingCart(){
+        return shoppingCart;
     }
 }

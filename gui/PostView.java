@@ -1,6 +1,7 @@
 package gui;
 
 import system.*;
+import services.*;
 import javax.swing.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,17 +29,20 @@ public class PostView extends javax.swing.JFrame {
     private static ProductsPanel productsPanel; //new
     protected static int cartSize = 0;
     protected static int totalPrice = 0;
-    private Cashier cashier;
     private JLabel timeTextField;
+    SaleService saleService;
 
-    public PostView(HashMap<String, Item> items,Cashier cashier) {
-        this.cashier = cashier;
+    public PostView(HashMap<String, Item> items,SaleService saleService) {
+        this.saleService = saleService;
         initComponents(items);
     }  
 
     protected void createSale() {
-        Sale sale = cashier.createSale(customerPanel.getCustomerName());
-        System.out.println(cashier.createJson(sale));
+        Sale sale = new Sale(customerPanel.getCustomerName());
+        sale.setItemList(productsPanel.getShoppingCart());
+        sale.insertPaymentMethod(paymentPanel.getPaymentMethod(),paymentPanel.getAmountTendered());
+        System.out.println(sale.createJson());
+        saleService.newSale(sale.createJson());
     }
 
     protected static void clearFields() {

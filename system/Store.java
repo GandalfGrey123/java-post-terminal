@@ -10,7 +10,7 @@ public class Store{
 
 	public Store(String url){
 		Gson gson = new Gson();
-		Products productService = new Products(url);
+		ProductService productService = new ProductService(url);
 		Item[] itemArray = gson.fromJson(productService.getProducts(),Item[].class);
 		for (Item item : itemArray) items.put(item.getUpc(), item);
 	}

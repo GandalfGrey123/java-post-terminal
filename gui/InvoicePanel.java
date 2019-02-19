@@ -17,6 +17,7 @@ public class InvoicePanel extends JPanel {
     protected static JLabel totalLabel;
     private JLabel totalPriceLabel;
     private String tableHeader[] = new String[] { "ITEM", "QUANTITY", "UNIT PRICE", "EXTENDED PRICE"};
+    private float totalAmount = 0.0f;
 
     public InvoicePanel() {
         dtm = new DefaultTableModel(0,0);
@@ -67,8 +68,18 @@ public class InvoicePanel extends JPanel {
 
     }
 
-    protected static void resetTotal() {
+    protected void resetTotal() {
         totalLabel.setText("0.00");
+        totalAmount = 0.0f;
+    }
+
+    public void addToTotal(float newItemPrice) {
+        totalAmount += newItemPrice;
+        totalLabel.setText(String.valueOf(totalAmount));
+    }
+
+    public float getTotal() {
+        return totalAmount;
     }
 
 }

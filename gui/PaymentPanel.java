@@ -13,33 +13,21 @@ import static gui.PostView.clearFields;
 
 public class PaymentPanel extends JPanel {
 
-    private JLabel paymentLabel;
-    protected static JComboBox payTypeComboBox;
-    private JLabel amountLabel;
-    protected static JTextField amountTextField;
-    private JButton payButton;
+    private JLabel paymentLabel = new JLabel();
+    protected static JComboBox payTypeComboBox = new JComboBox();
+    private JLabel amountLabel = new JLabel();
+    protected static JTextField amountTextField = new JTextField();
+    private JButton payButton = new JButton();
     private PostView postView;
 
 
     public PaymentPanel(PostView postView) {
-        this.postView=postView;
-
-        paymentLabel = new JLabel();
-        payTypeComboBox = new JComboBox();
-        amountLabel = new JLabel();
-        amountTextField = new JTextField();
-        payButton = new JButton();
-
+        this.postView=postView; 
 
         setBorder(BorderFactory.createTitledBorder("Payment"));
         paymentLabel.setText("Payment type");
 
-        payTypeComboBox.setModel(new DefaultComboBoxModel(new String[] { "Cash", "Credit", "Check"}));
-        payTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payTypeComboBoxActionPerformed(evt);
-            }
-        });
+        payTypeComboBox.setModel(new DefaultComboBoxModel(new String[] { "CASH", "CREDIT", "CHECK"}));
 
         amountLabel.setText(" Amount");
 
@@ -82,8 +70,6 @@ public class PaymentPanel extends JPanel {
                                 .addComponent(payButton)
                                 .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-
     }
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +77,11 @@ public class PaymentPanel extends JPanel {
         clearFields();
     }
 
-    private void payTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        // send to REST endpoint
+    public static String getPaymentMethod(){
+        return String.valueOf(payTypeComboBox.getSelectedItem());
+    }
+
+    public static float getAmountTendered(){
+        return Float.parseFloat(amountTextField.getText());
     }
 }
