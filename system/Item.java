@@ -27,4 +27,8 @@ public class Item{
    public float getPrice(){
       return Float.parseFloat(price.substring(1,price.length()));
    }
+
+   public String toString() {
+      return this.description;
+   }
 }

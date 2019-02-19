@@ -9,7 +9,6 @@ import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import java.util.HashMap;
 
-
 import static gui.PostView.*;
 import static gui.InvoicePanel.*; // products get sent to the invoice panel
 
@@ -24,16 +23,14 @@ public class ProductsPanel extends JPanel {
     public ProductsPanel(HashMap<String, Item> items) {
 
         upcLabel = new JLabel();
-        productsComboBox = new JComboBox();
+        JComboBox<Item> productsComboBox = new JComboBox<Item>();
+        items.forEach((upc,item) -> productsComboBox.addItem(item));
         qtyLabel = new JLabel();
         qtyComboBox = new JComboBox();
         enterButton = new JButton();
 
         setBorder(BorderFactory.createTitledBorder("Products"));
         upcLabel.setText("UPC");
-
-        productsComboBox.setModel(new DefaultComboBoxModel(items.values().toArray()));
-
         enterButton.setText("Enter");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,7 +43,6 @@ public class ProductsPanel extends JPanel {
         qtyComboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
         GroupLayout productsPanelLayout = new GroupLayout(this);
-
         setLayout(productsPanelLayout);
 
         productsPanelLayout.setHorizontalGroup(
@@ -78,23 +74,23 @@ public class ProductsPanel extends JPanel {
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         //insert and store data into Jtable
         if(cartSize < 17) {
-            addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
+            //addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
         } else {
             dtm.addRow(new Object[] {null, null, null, null, null, null});
-            addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
+            //addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
             System.out.println("Cart full, made more space..");
         }
 
     }
 
-    private void addToCart(Object upc, Object quantity) {
-        String price = "get from REST";
-        String extPrice = "qty*price";
+    private void addToCart(Item item, int quantity) {
+        /*String price = item.getPrice();
+        String extPrice = item.getPrice();
         invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
         invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
         invoiceScrollPane.setValueAt(price, cartSize, 2);
         invoiceScrollPane.setValueAt(extPrice, cartSize, 3);
-        cartSize++;
+        cartSize++;*/
 
     }
 
