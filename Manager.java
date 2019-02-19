@@ -27,6 +27,6 @@ public class Manager{
 		}
 		String[] itemNames = new String[productDescriptions.size()];
 		itemNames = productDescriptions.toArray(itemNames);
-		PostView.start(itemNames);
+//		PostView.start(itemNames);
 	}
 }
