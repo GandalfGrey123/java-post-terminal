@@ -1,17 +1,13 @@
 package gui;
 
-import system.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.geom.RoundRectangle2D;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.Date;
-import java.awt.*;
-import java.util.List;
-import java.util.ArrayList;
 
+import static gui.CustomerPanel.custNameTextField;
+import static gui.InvoicePanel.*; // when resetting the fields PostView needs access to dtms
 import static gui.PaymentPanel.amountTextField;
+import static gui.PaymentPanel.creditCardTextField;
 import static gui.PaymentPanel.payTypeComboBox;
 import static gui.ProductsPanel.productsComboBox;
 import static gui.ProductsPanel.qtyComboBox;
@@ -24,34 +20,35 @@ import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
 public class PostView extends javax.swing.JFrame {
     
     /** Creates new form PostView */
-    public PostView(String[] items) {
-        initComponents(items);
+    private PostView() {
+        initComponents();
     }
-    
-    // Variables declaration
-    private static CustomerPanel customerPanel; //new
-    private static InvoicePanel invoicePanel; //new
-    private static PaymentPanel paymentPanel; //new
-    private static ProductsPanel productsPanel; //new
 
-    protected static int cartSize = 0;
+    static int cartSize = 0;
 
-    protected static int totalPrice = 0;
-
-    private JLabel timeTextField;
-    // End of variables declaration   
+    static double totalPrice;
+    static DecimalFormat df;
+    // End of variables declaration
     
     /** This method is called from within the constructor to
      * initialize the form.
      */                       
-    private void initComponents(String[] items) {
+    private void initComponents() {
 
-        productsPanel = new ProductsPanel(items); //new
-        customerPanel = new CustomerPanel(); //new
-        invoicePanel = new InvoicePanel(); //new
-        paymentPanel = new PaymentPanel(); //new
+        //new
+        ProductsPanel productsPanel = new ProductsPanel();
+        // Variables declaration
+        //new
+        CustomerPanel customerPanel = new CustomerPanel();
+        //new
+        InvoicePanel invoicePanel = new InvoicePanel();
+        //new
+        PaymentPanel paymentPanel = new PaymentPanel();
 
-        timeTextField = new JLabel();
+        JLabel timeTextField = new JLabel();
+
+        //totalPrice = 0.00;
+        //df = new DecimalFormat("#.00");
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("POST");
@@ -109,24 +106,26 @@ public class PostView extends javax.swing.JFrame {
     }
 
 
-    protected static void clearFields() {
+    static void clearFields() {
         amountTextField.setText(null);
-        CustomerPanel.custNameTextField.setText(null);
-        InvoicePanel.dtm.setRowCount(0);
+        custNameTextField.setText(null);
+        creditCardTextField.setText(null);
+        dtm.setRowCount(0);
         productsComboBox.setSelectedIndex(0);
         qtyComboBox.setSelectedIndex(0);
         payTypeComboBox.setSelectedIndex(0);
-        invoicePanel.resetTotal(); // resets total price (idk if this should be in InvoicePanel)
+        totalPrice = 0.00;
+        totalPriceLabel.setText("$ "+df.format(totalPrice));
         cartSize = 0;
         for(int count = 1; count <= 17; count++) {
-            InvoicePanel.dtm.addRow(new Object[] {null, null, null, null, null, null});
+            addRow();
         }
     }
     
     /**
      * @param args the command line arguments
      */
-    public static void start(String[] items) {
+    public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -137,16 +136,10 @@ public class PostView extends javax.swing.JFrame {
                             break;
                         }
                     }
-                } catch (UnsupportedLookAndFeelException e) {
-                    // handle exception
-                } catch (ClassNotFoundException e) {
-                    // handle exception
-                } catch (InstantiationException e) {
-                    // handle exception
-                } catch (IllegalAccessException e) {
+                } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                     // handle exception
                 }
-                PostView post = new PostView(items);
+                PostView post = new PostView();
 
                 post.setResizable(false);
 
