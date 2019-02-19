@@ -21,7 +21,7 @@ public class CustomerPanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Customer"));
         custNameLabel.setText("Name ");
 
-        addActionListener(new java.awt.event.ActionListener() {
+        custNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 custNameTextFieldActionPerformed(evt);
             }
@@ -48,6 +48,10 @@ public class CustomerPanel extends JPanel {
                                 .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+    }
+
+    public static String getCustomerName(){
+        return custNameTextField.getText();
     }
 
     private void custNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {

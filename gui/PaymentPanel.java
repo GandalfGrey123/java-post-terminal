@@ -18,9 +18,11 @@ public class PaymentPanel extends JPanel {
     private JLabel amountLabel;
     protected static JTextField amountTextField;
     private JButton payButton;
+    private PostView postView;
 
 
-    public PaymentPanel() {
+    public PaymentPanel(PostView postView) {
+        this.postView=postView;
 
         paymentLabel = new JLabel();
         payTypeComboBox = new JComboBox();
@@ -84,8 +86,8 @@ public class PaymentPanel extends JPanel {
 
     }
 
-    private static void payButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // clear all fields and send data to REST API database
+    private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        postView.createSale();
         clearFields();
     }
 

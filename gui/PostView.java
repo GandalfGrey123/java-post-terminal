@@ -37,8 +37,8 @@ public class PostView extends javax.swing.JFrame {
     }  
 
     protected void createSale() {
-        //Sale sale = cashier.createSale(CustomerPanel.getCustomerName());
-        //System.out.println(cashier.createJson(sale));
+        Sale sale = cashier.createSale(customerPanel.getCustomerName());
+        System.out.println(cashier.createJson(sale));
     }
 
     protected static void clearFields() {
@@ -59,7 +59,7 @@ public class PostView extends javax.swing.JFrame {
         productsPanel = new ProductsPanel(items); 
         customerPanel = new CustomerPanel(); 
         invoicePanel = new InvoicePanel(); 
-        paymentPanel = new PaymentPanel(); 
+        paymentPanel = new PaymentPanel(this); 
         timeTextField = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
