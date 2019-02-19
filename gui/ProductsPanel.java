@@ -6,6 +6,7 @@ import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
+import java.util.HashMap;
 
 import static gui.PostView.*;
 import static gui.InvoicePanel.*; // products get sent to the invoice panel
@@ -15,19 +16,17 @@ class ProductsPanel extends JPanel {
     static JComboBox<String> productsComboBox;
     static JComboBox<String> qtyComboBox;
 
-    ProductsPanel() {
+    public ProductsPanel(HashMap<String, Item> items) {
 
-        JLabel upcLabel = new JLabel();
-        productsComboBox = new JComboBox<>();
-        JLabel qtyLabel = new JLabel();
-        qtyComboBox = new JComboBox<>();
-        JButton enterButton = new JButton();
+        upcLabel = new JLabel();
+        JComboBox<Item> productsComboBox = new JComboBox<Item>();
+        items.forEach((upc,item) -> productsComboBox.addItem(item));
+        qtyLabel = new JLabel();
+        qtyComboBox = new JComboBox();
+        enterButton = new JButton();
 
         setBorder(BorderFactory.createTitledBorder("Products"));
         upcLabel.setText("UPC");
-
-        productsComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         enterButton.setText("Enter");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,7 +39,6 @@ class ProductsPanel extends JPanel {
         qtyComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         GroupLayout productsPanelLayout = new GroupLayout(this);
-
         setLayout(productsPanelLayout);
 
         productsPanelLayout.setHorizontalGroup(
@@ -72,25 +70,23 @@ class ProductsPanel extends JPanel {
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
         //insert and store data into Jtable
         if(cartSize < 17) {
-            addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
+            //addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
         } else {
-            addRow();
-            addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
+            dtm.addRow(new Object[] {null, null, null, null, null, null});
+            //addToCart(productsComboBox.getSelectedItem(),qtyComboBox.getSelectedItem());
             System.out.println("Cart full, made more space..");
         }
 
     }
 
-    private void addToCart(Object upc, Object quantity) {
-        String price = "get from REST";
-        String extPrice = "qty*price";
+    private void addToCart(Item item, int quantity) {
+        /*String price = item.getPrice();
+        String extPrice = item.getPrice();
         invoiceScrollPane.setValueAt(productsComboBox.getSelectedItem(), cartSize, 0);
         invoiceScrollPane.setValueAt(qtyComboBox.getSelectedItem(), cartSize, 1);
         invoiceScrollPane.setValueAt(price, cartSize, 2);
         invoiceScrollPane.setValueAt(extPrice, cartSize, 3);
-        totalPrice += 1.00;
-        totalPriceLabel.setText("$ "+df.format(totalPrice));
-        cartSize++;
+        cartSize++;*/
 
     }
 

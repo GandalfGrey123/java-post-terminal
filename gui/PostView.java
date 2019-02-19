@@ -1,8 +1,13 @@
 package gui;
 
 import javax.swing.*;
-import java.text.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static gui.CustomerPanel.custNameTextField;
 import static gui.InvoicePanel.*; // when resetting the fields PostView needs access to dtms
@@ -19,36 +24,45 @@ import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
 
 public class PostView extends javax.swing.JFrame {
     
-    /** Creates new form PostView */
-    private PostView() {
-        initComponents();
+    private static CustomerPanel customerPanel; //new
+    private static InvoicePanel invoicePanel; //new
+    private static PaymentPanel paymentPanel; //new
+    private static ProductsPanel productsPanel; //new
+    protected static int cartSize = 0;
+    protected static int totalPrice = 0;
+    private Cashier cashier;
+    private JLabel timeTextField;
+
+    public PostView(HashMap<String, Item> items,Cashier cashier) {
+        this.cashier = cashier;
+        initComponents(items);
+    }  
+
+    protected void createSale() {
+        //Sale sale = cashier.createSale(CustomerPanel.getCustomerName());
+        //System.out.println(cashier.createJson(sale));
     }
 
-    static int cartSize = 0;
+    protected static void clearFields() {
+        amountTextField.setText(null);
+        CustomerPanel.custNameTextField.setText(null);
+        InvoicePanel.dtm.setRowCount(0);
+        productsComboBox.setSelectedIndex(0);
+        qtyComboBox.setSelectedIndex(0);
+        payTypeComboBox.setSelectedIndex(0);
+        invoicePanel.resetTotal(); // resets total price (idk if this should be in InvoicePanel)
+        cartSize = 0;
+        for(int count = 1; count <= 17; count++) {
+            InvoicePanel.dtm.addRow(new Object[] {null, null, null, null, null, null});
+        }
+    }
 
-    static double totalPrice;
-    static DecimalFormat df;
-    // End of variables declaration
-    
-    /** This method is called from within the constructor to
-     * initialize the form.
-     */                       
-    private void initComponents() {
-
-        //new
-        ProductsPanel productsPanel = new ProductsPanel();
-        // Variables declaration
-        //new
-        CustomerPanel customerPanel = new CustomerPanel();
-        //new
-        InvoicePanel invoicePanel = new InvoicePanel();
-        //new
-        PaymentPanel paymentPanel = new PaymentPanel();
-
-        JLabel timeTextField = new JLabel();
-
-        //totalPrice = 0.00;
-        //df = new DecimalFormat("#.00");
+    private void initComponents(HashMap<String, Item> items) {
+        productsPanel = new ProductsPanel(items); 
+        customerPanel = new CustomerPanel(); 
+        invoicePanel = new InvoicePanel(); 
+        paymentPanel = new PaymentPanel(); 
+        timeTextField = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("POST");
@@ -59,7 +73,6 @@ public class PostView extends javax.swing.JFrame {
         String formattedDate= dateFormat.format(date);
 
         timeTextField.setText(formattedDate);
-
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,49 +116,6 @@ public class PostView extends javax.swing.JFrame {
         );
 
         pack();
-    }
-
-
-    static void clearFields() {
-        amountTextField.setText(null);
-        custNameTextField.setText(null);
-        creditCardTextField.setText(null);
-        dtm.setRowCount(0);
-        productsComboBox.setSelectedIndex(0);
-        qtyComboBox.setSelectedIndex(0);
-        payTypeComboBox.setSelectedIndex(0);
-        totalPrice = 0.00;
-        totalPriceLabel.setText("$ "+df.format(totalPrice));
-        cartSize = 0;
-        for(int count = 1; count <= 17; count++) {
-            addRow();
-        }
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                        if ("Nimbus".equals(info.getName())) {
-                            UIManager.setLookAndFeel(info.getClassName());
-                            break;
-                        }
-                    }
-                } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                    // handle exception
-                }
-                PostView post = new PostView();
-
-                post.setResizable(false);
-
-                post.setVisible(true);
-            }
-        });
-    }                
+    }           
     
 }
