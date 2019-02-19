@@ -19,6 +19,8 @@ import static javax.swing.GroupLayout.Alignment.*;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class PostView extends javax.swing.JFrame {
@@ -72,6 +74,14 @@ public class PostView extends javax.swing.JFrame {
         timeTextField = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                System.out.println("Print transactions to console");
+                e.getWindow().dispose();
+            }
+        });
         setTitle("POST");
 
         Date date = new Date();
