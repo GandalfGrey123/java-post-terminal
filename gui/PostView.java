@@ -48,7 +48,6 @@ public class PostView extends javax.swing.JFrame {
         System.out.println(sale.createJson());
         saleService.newSale(sale.createJson());
         store.addToSalesLog(sale);
-        store.printSalesLog();
     }
 
     protected static void clearFields() {
@@ -78,7 +77,7 @@ public class PostView extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e)
             {
-                System.out.println("Print transactions to console");
+                store.printSalesLog();
                 e.getWindow().dispose();
             }
         });
