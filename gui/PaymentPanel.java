@@ -1,14 +1,12 @@
 package gui;
 
 import javax.swing.*;
-
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.Alignment.TRAILING;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
-
 import static gui.PostView.clearFields;
 import static javax.swing.LayoutStyle.ComponentPlacement.UNRELATED;
 
@@ -23,32 +21,23 @@ public class PaymentPanel extends JPanel {
     private JTextField creditCardTxt = new JTextField();
     private PostView postView;
 
-
-
     public PaymentPanel(PostView postView) {
         this.postView=postView; 
-
         setBorder(BorderFactory.createTitledBorder("Payment"));
         paymentLabel.setText("Payment type");
-
         payTypeComboBox.setModel(new DefaultComboBoxModel(new String[] { "CASH", "CREDIT", "CHECK"}));
-
-
         creditCardLabel.setText("Credit card #");
         creditCardLabel.setVisible(false);
         creditCardTxt.setText("123456789");
         creditCardTxt.setVisible(false);
+        amountLabel.setText(" Amount");
+        payButton.setText("Pay");
 
         payTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payTypeComboBoxActionPerformed(evt);
             }
         });
-
-        amountLabel.setText(" Amount");
-
-
-        payButton.setText("Pay");
 
         payButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +46,6 @@ public class PaymentPanel extends JPanel {
         });
 
         GroupLayout paymentPanelLayout = new GroupLayout(this);
-
         setLayout(paymentPanelLayout);
         paymentPanelLayout.setHorizontalGroup(
             paymentPanelLayout.createParallelGroup(LEADING)
@@ -99,8 +87,6 @@ public class PaymentPanel extends JPanel {
                         .addComponent(creditCardTxt, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
                 .addContainerGap(DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-
     }
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {

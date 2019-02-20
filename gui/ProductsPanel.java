@@ -2,14 +2,12 @@ package gui;
 
 import system.*;
 import javax.swing.*;
-
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import java.util.HashMap;
 import java.util.ArrayList;
-
 import static gui.PostView.*;
 import static gui.InvoicePanel.*; // products get sent to the invoice panel
 
