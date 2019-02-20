@@ -20,9 +20,11 @@ public class ProductsPanel extends JPanel {
     private JButton enterButton;
     private HashMap<String, Item> dropdownMenuItems;
     private ArrayList<SaleItem> shoppingCart = new ArrayList<SaleItem>();
+    private InvoicePanel invoicePanel;
 
-    public ProductsPanel(HashMap<String, Item> dropdownMenuItems) {
+    public ProductsPanel(HashMap<String, Item> dropdownMenuItems, InvoicePanel invoicePanel) {
         this.dropdownMenuItems = dropdownMenuItems;
+        this.invoicePanel = invoicePanel;
 
         upcLabel = new JLabel();
         productsComboBox = new JComboBox<Item>();
@@ -87,6 +89,8 @@ public class ProductsPanel extends JPanel {
         invoiceScrollPane.setValueAt(quantity, cartSize, 1);
         invoiceScrollPane.setValueAt(item.getPrice(), cartSize, 2);
         invoiceScrollPane.setValueAt(extendedPrice, cartSize, 3);
+
+        invoicePanel.addToTotal(extendedPrice);
         shoppingCart.add(new SaleItem(item.getUpc(),quantity,extendedPrice));
         cartSize++;
     }

@@ -66,9 +66,9 @@ public class PostView extends javax.swing.JFrame {
     }
 
     private void initComponents(HashMap<String, Item> items) {
-        productsPanel = new ProductsPanel(items); 
-        customerPanel = new CustomerPanel(); 
         invoicePanel = new InvoicePanel(); 
+        productsPanel = new ProductsPanel(items,invoicePanel); 
+        customerPanel = new CustomerPanel(); 
         paymentPanel = new PaymentPanel(this); 
         timeTextField = new JLabel();
 
