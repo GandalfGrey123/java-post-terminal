@@ -31,7 +31,8 @@ public class InvoicePanel extends JPanel {
         dtm.setColumnIdentifiers(tableHeader);
         invoiceScrollPane.setModel(dtm);
         invoiceScrollPane.getTableHeader().setReorderingAllowed(false);
-
+        invoiceScrollPane.setDefaultEditor(Object.class, null);
+        
         for(int count = 1; count <= 17; count++) {
             dtm.addRow(new Object[] {null, null, null, null, null, null});
         }
