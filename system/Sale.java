@@ -9,26 +9,30 @@ import java.util.ArrayList;
 public class Sale { 
    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-   private String customerName = ""; 
+   private String customer = ""; 
    private Date timeOfSale = new Date();
    private ArrayList<SaleItem> items = new ArrayList<SaleItem>();
    private float total = 0.0f; 
    private Payment tendered;
    private float returned = 0.0f;
    
-   public Sale(String customerName){
-      this.customerName = customerName;
+   public Sale(String customer){
+      this.customer = customer;
    } 
 
-   public void insertPaymentMethod(String type, float amount){
+   public void insertPaymentMethod(String type, float amount, int creditCardNumber){
       if(type.equals("CHECK")){
-         tendered = new Payment(amount);
-      }else{
-         tendered = new Payment(1234, amount);
+         tendered = new Payment(amount,false);
+      }else if(type.equals("CASH")){
+         tendered = new Payment(amount,true);
+      }else if(type.equals("CREDIT")){
+         tendered = new Payment(creditCardNumber, amount);
       }
 
-      tendered.validatePayment();
-      System.out.println(tendered.getSuccessMsg());
+      if(!type.equals("CASH")){
+         tendered.validatePayment();
+         System.out.println(tendered.getSuccessMsg());
+      }
 
       returned = amount - total;
    }
@@ -50,7 +54,7 @@ public class Sale {
    }
 
    public String getCustomerName(){
-      return customerName;
+      return customer;
    }
 
    public ArrayList<SaleItem> getItemList(){

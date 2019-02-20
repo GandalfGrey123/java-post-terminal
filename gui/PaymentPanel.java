@@ -98,6 +98,10 @@ public class PaymentPanel extends JPanel {
         return String.valueOf(payTypeComboBox.getSelectedItem());
     }
 
+    public int getCreditCardNumber(){
+        return Integer.parseInt(creditCardTxt.getText());
+    }
+
     public static float getAmountTendered(){
         return Float.parseFloat(amountTextField.getText());
     }

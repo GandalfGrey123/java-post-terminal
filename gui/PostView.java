@@ -44,7 +44,7 @@ public class PostView extends javax.swing.JFrame {
     protected void createSale() {
         Sale sale = new Sale(customerPanel.getCustomerName());
         sale.setItemList(productsPanel.getShoppingCart());
-        sale.insertPaymentMethod(paymentPanel.getPaymentMethod(),paymentPanel.getAmountTendered());
+        sale.insertPaymentMethod(paymentPanel.getPaymentMethod(),paymentPanel.getAmountTendered(),paymentPanel.getCreditCardNumber());
         System.out.println(sale.createJson());
         saleService.newSale(sale.createJson());
         store.addToSalesLog(sale);

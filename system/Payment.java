@@ -6,12 +6,11 @@ import com.google.gson.Gson;
 import services.PaymentService;
 
 public class Payment{
-   private String type;
-   private transient int cardNumber;
+   private String type = "CASH";
+   private int cardNumber;
    private float amount = 0.0f;
    private transient boolean successful = false;
    private transient String message;
-
 
    public Payment(int cardNumber, float creditAmount){
       this.type = "CREDIT";
@@ -19,9 +18,14 @@ public class Payment{
       this.cardNumber = cardNumber;
    }
 
-   public Payment(float checkAmount){
-      this.type = "CHECK";
-      this.amount = checkAmount;
+   public Payment(float amount, boolean cash){
+      if(cash){
+         this.type = "CASH";
+      }else{
+         this.type = "CHECK";
+      }
+      
+      this.amount = amount;
    }
 
    public boolean validatePayment(){
