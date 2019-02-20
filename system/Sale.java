@@ -60,10 +60,7 @@ public class Sale {
    public ArrayList<SaleItem> getItemList(){
       return items;
    }
-   public String getDescription(){
-      return upc;
-   }
-}
+
 
    public float getTotal(){
       return total;
