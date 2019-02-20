@@ -1,67 +1,88 @@
 package system;
-import java.util.HashMap;
+import com.google.gson.Gson;
+import services.PaymentService;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 
-class Sale { 
+public class Sale { 
    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-   private String customer; 
+   private String customer = ""; 
    private Date timeOfSale = new Date();
-   private ArrayList<Item> items = new ArrayList<Item>();
-   private int total; 
+   private ArrayList<SaleItem> items = new ArrayList<SaleItem>();
+   private float total = 0.0f; 
    private Payment tendered;
-   private int returned;
+   private float returned = 0.0f;
    
    public Sale(String customer){
       this.customer = customer;
    } 
-   
-   public String getName() { 
-      return customer; 
-   } 
-   
-   public void setName(String customer) { 
-      this.customer = customer; 
-   } 
+
+   public void insertPaymentMethod(String type, float amount, int creditCardNumber){
+      if(type.equals("CHECK")){
+         tendered = new Payment(amount,false);
+      }else if(type.equals("CASH")){
+         tendered = new Payment(amount,true);
+      }else if(type.equals("CREDIT")){
+         tendered = new Payment(creditCardNumber, amount);
+      }
+
+      if(!type.equals("CASH")){
+         tendered.validatePayment();
+         System.out.println(tendered.getSuccessMsg());
+      }
+
+      returned = amount - total;
+   }
+
+   public void setItemList(ArrayList<SaleItem> items){
+      this.items = items;
+      items.forEach((item)->total+=item.getPrice());
+   }
 
    public void insertItem(String upc,int quantity,float price){
-      Item item = new Item(upc,quantity,price);
+      SaleItem item = new SaleItem(upc,quantity,price);
+      total += quantity*price;
       items.add(item);
    }
-}
 
-class Item{
-   private String upc;
-   private int quantity;
-   private float price;
+   public String createJson(){
+      Gson gson = new Gson();
+      return gson.toJson(this);
+   }
 
+   public String getCustomerName(){
+      return customer;
+   }
 
-   public Item(String upc,int quantity,float price){
-      this.upc = upc;
-      this.quantity = quantity;
-      this.price = price;
+   public ArrayList<SaleItem> getItemList(){
+      return items;
    }
    public String getDescription(){
       return upc;
    }
 }
 
-class Payment{
-   private String type;
-   private float amount;
-
-   public Payment(String type,float amount){
-      this.type = type;
-      this.amount = amount;
+   public float getTotal(){
+      return total;
    }
 
-   public String getType(){
-      return type;
+   public float getTendered(){
+      return tendered.getAmount();
    }
 
-   public float getAmount(){
-      return amount;
+   public String getPaymentMethod(){
+      return tendered.getType();
    }
+
+   public int getCreditCardNumber(){
+      return tendered.getCreditCardNumber();
+   }
+
+   public float getReturned(){
+      return returned;
+   }
+
 }
