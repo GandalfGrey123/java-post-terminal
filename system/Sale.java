@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Sale { 
    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
-   private String customer; 
+   private String customer = ""; 
    private Date timeOfSale = new Date();
    private ArrayList<SaleItem> items = new ArrayList<SaleItem>();
    private float total = 0.0f; 
@@ -20,18 +20,26 @@ public class Sale {
       this.customer = customer;
    } 
 
-   public void insertPaymentMethod(String type, float amount){
-      if(type.equals("check")){
-         tendered = new Payment(amount);
-      }else{
-         tendered = new Payment(1234, amount);
+   public void insertPaymentMethod(String type, float amount, int creditCardNumber){
+      if(type.equals("CHECK")){
+         tendered = new Payment(amount,false);
+      }else if(type.equals("CASH")){
+         tendered = new Payment(amount,true);
+      }else if(type.equals("CREDIT")){
+         tendered = new Payment(creditCardNumber, amount);
       }
 
-//      tendered = new Payment(1234, amount);
-      tendered.validatePayment();
-      System.out.println(tendered.getSuccessMsg());
+      if(!type.equals("CASH")){
+         tendered.validatePayment();
+         System.out.println(tendered.getSuccessMsg());
+      }
 
       returned = amount - total;
+   }
+
+   public void setItemList(ArrayList<SaleItem> items){
+      this.items = items;
+      items.forEach((item)->total+=item.getPrice());
    }
 
    public void insertItem(String upc,int quantity,float price){
@@ -39,81 +47,38 @@ public class Sale {
       total += quantity*price;
       items.add(item);
    }
-}
 
-class SaleItem{
-   private String upc;
-   private int quantity;
-   private float price;
-
-   public SaleItem(String upc,int quantity,float price){
-      this.upc = upc;
-      this.quantity = quantity;
-      this.price = price;
-   }
-}
-
-class Payment{
-   private transient String type;
-   private int cardNumber;
-   private float amount;
-   private boolean successful = false;
-   private String message;
-
-
-   public Payment(int cardNumber, float creditAmount){
-      this.type = "CREDIT";
-      this.amount = creditAmount;
-      this.cardNumber = cardNumber;
-   }
-   public Payment(float checkAmount){
-      this.type = "CHECK";
-      this.amount = checkAmount;
-   }
-   public boolean validatePayment(){
-      String BASE_URL = "http://localhost:3000";
-      PaymentService paymentService = new PaymentService(BASE_URL);
-      switch (type){
-         case "CHECK":
-//            System.out.println("Payment type: Check");
-            paymentService.setPaymentType("/check");
-            break;
-         case "CREDIT":
-            paymentService.setPaymentType("/credit");
-            break;
-      }
-      parseValidation(paymentService.newPayment(createRequest()));
-//      paymentService.newPayment(createRequest());
-      return successful;
-   }
-   private String createRequest(){
-      Gson postBody = new Gson();
-      return postBody.toJson(this);
-   }
-   private void parseValidation(String serverValidation){
-      if(serverValidation.equals("202")){
-         message = "Payment Successful";
-         successful = true;
-      }else if(serverValidation.equals("406")){
-         message = "Payment Denied";
-      }else{
-         message = serverValidation;
-      }
-
-   }
-   public String getType(){
-      return type;
+   public String createJson(){
+      Gson gson = new Gson();
+      return gson.toJson(this);
    }
 
-   public float getAmount(){
-      return amount;
-   }
-   public String getSuccessMsg(){
-      return this.message;
-   }
-   public Boolean isSuccessful(){
-      return this.successful;
+   public String getCustomerName(){
+      return customer;
    }
 
+   public ArrayList<SaleItem> getItemList(){
+      return items;
+   }
+
+   public float getTotal(){
+      return total;
+   }
+
+   public float getTendered(){
+      return tendered.getAmount();
+   }
+
+   public String getPaymentMethod(){
+      return tendered.getType();
+   }
+
+   public int getCreditCardNumber(){
+      return tendered.getCreditCardNumber();
+   }
+
+   public float getReturned(){
+      return returned;
+   }
 
 }

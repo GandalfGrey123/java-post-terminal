@@ -1,6 +1,7 @@
 package gui;
 
 import system.*;
+import services.*;
 import javax.swing.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,8 @@ import static javax.swing.GroupLayout.Alignment.*;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class PostView extends javax.swing.JFrame {
@@ -28,27 +31,34 @@ public class PostView extends javax.swing.JFrame {
     private static ProductsPanel productsPanel; //new
     protected static int cartSize = 0;
     protected static int totalPrice = 0;
-    private Cashier cashier;
     private JLabel timeTextField;
+    private SaleService saleService;
+    private Store store;
 
-    public PostView(HashMap<String, Item> items,Cashier cashier) {
-        this.cashier = cashier;
-        initComponents(items);
+    public PostView(Store store,SaleService saleService) {
+        this.saleService = saleService;
+        this.store = store;
+        initComponents(store.getItemList());
     }  
 
     protected void createSale() {
-        Sale sale = cashier.createSale(customerPanel.getCustomerName());
-        System.out.println(cashier.createJson(sale));
+        Sale sale = new Sale(customerPanel.getCustomerName());
+        sale.setItemList(productsPanel.getShoppingCart());
+        sale.insertPaymentMethod(paymentPanel.getPaymentMethod(),paymentPanel.getAmountTendered(),paymentPanel.getCreditCardNumber());
+        System.out.println(sale.createJson());
+        saleService.newSale(sale.createJson());
+        store.addToSalesLog(sale);
     }
 
     protected static void clearFields() {
         amountTextField.setText(null);
         CustomerPanel.custNameTextField.setText(null);
         InvoicePanel.dtm.setRowCount(0);
+        productsPanel.cleanShoppingCart();
         productsComboBox.setSelectedIndex(0);
         qtyComboBox.setSelectedIndex(0);
         payTypeComboBox.setSelectedIndex(0);
-        invoicePanel.resetTotal(); // resets total price (idk if this should be in InvoicePanel)
+        invoicePanel.resetTotal(); 
         cartSize = 0;
         for(int count = 1; count <= 17; count++) {
             InvoicePanel.dtm.addRow(new Object[] {null, null, null, null, null, null});
@@ -63,6 +73,14 @@ public class PostView extends javax.swing.JFrame {
         timeTextField = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                store.printSalesLog();
+                e.getWindow().dispose();
+            }
+        });
         setTitle("POST");
 
         Date date = new Date();

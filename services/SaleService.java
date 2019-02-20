@@ -5,13 +5,13 @@ import java.io.IOException;
 
 public class SaleService {
 
-    String baseUrl;
+    private String baseUrl;
 
-    SaleService(String baseUrl) {
+    public SaleService(String baseUrl) {
         this.baseUrl = baseUrl + "/sales";
     }
 
-    String getSales() {
+    public String getSales() {
         try {
             Get req = new Get(this.baseUrl);
             String res = req.execute();
@@ -23,7 +23,7 @@ public class SaleService {
         }
     }
 
-    String newSale(String payload) {
+    public String newSale(String payload) {
         try {
             Put req = new Put(this.baseUrl);
             String res = req.execute(payload);
