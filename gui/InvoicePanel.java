@@ -72,13 +72,13 @@ public class InvoicePanel extends JPanel {
     }
 
     protected void resetTotal() {
-        totalLabel.setText("0.00");
+        totalLabel.setText("$0.00");
         totalAmount = 0.0f;
     }
 
     public void addToTotal(float newItemPrice) {
         totalAmount += newItemPrice;
-        totalLabel.setText(String.valueOf(totalAmount));
+        totalLabel.setText("$"+String.valueOf(totalAmount));
     }
 
     public float getTotal() {
