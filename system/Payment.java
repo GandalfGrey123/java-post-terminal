@@ -29,8 +29,8 @@ public class Payment{
    }
 
    public boolean validatePayment(){
-      String BASE_URL = "http://localhost:3000";
-      PaymentService paymentService = new PaymentService(BASE_URL);
+//      String BASE_URL = "http://localhost:3000";
+      PaymentService paymentService = PaymentService.getInstance();
       switch (type){
          case "CHECK":
             paymentService.setPaymentType("/check");

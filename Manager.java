@@ -14,6 +14,7 @@ public class Manager{
 		}
 		Manager manager = new Manager();
 		Store store = new Store(args[0]);
+		PaymentService paymentService = PaymentService.getInstance(args[0]);
 		SaleService saleService = new SaleService(args[0]);
 		manager.startGui(store,saleService);
 	}
