@@ -1,8 +1,9 @@
 import gui.*;
 import services.*;
 import system.*;
+import javax.swing.*;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Manager{
 
@@ -11,11 +12,30 @@ public class Manager{
 			System.out.println("Error: Manager <REST API URL>");
 			return;
 		}
+		Manager manager = new Manager();
 		Store store = new Store(args[0]);
-		//store.printItems();
-		Cashier cashier = new Cashier();
-		Sale sale = cashier.createSale("Pablo",20.0f,"CHECK");
-		System.out.println(cashier.createJson(sale));
+		PaymentService paymentService = PaymentService.getInstance(args[0]);
+		SaleService saleService = new SaleService(args[0]);
+		manager.startGui(store,saleService);
 	}
 
+	public void startGui(Store store,SaleService saleService){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                    // handle exception
+                }
+                PostView post = new PostView(store,saleService);
+                post.setResizable(false);
+                post.setVisible(true);
+            }
+        });   
+	}
 }

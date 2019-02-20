@@ -12,12 +12,13 @@ public class Products {
   } 
   public String getProducts(){
       try{
-        String productsJsonString = new Get(getProductsRoute).execute();
-        return productsJsonString;
+      String productsJsonString = new Get(getProductsRoute).execute();
       } catch (MalformedURLException e) {
-          return e.getMessage();
-      } catch (IOException e) {
-          return e.getMessage();
-      }
+           return e.getMessage();
+       } catch (IOException e) {
+           return e.getMessage();
+       }
+      return null;
+//    return productsJsonString;
   }
 }

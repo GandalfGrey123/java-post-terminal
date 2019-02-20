@@ -15,7 +15,10 @@ public class Response {
         this.result = "";
         this.connection = connection;
         this.createReader();
-        this.read();
+        if(statusCode!=406){
+            this.read();
+        }
+
     }
 
     public int getStatusCode() {
@@ -29,6 +32,9 @@ public class Response {
     private void createReader() {
         try {
             this.statusCode = connection.getResponseCode();
+            if(connection.getResponseCode() == 406){
+                return;
+            }
             this.bodyReader = new BufferedReader(
                     new InputStreamReader(connection.getInputStream())
             );
