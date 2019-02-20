@@ -3,7 +3,7 @@
 ### Team members:
 * Gary Straub
 * David Lopez
-* Matt
+* Mahdi (Matt) Massoodi
 * Izaac Garcilazo
 * Bijan Mahdavi
 * Marcus Wong
