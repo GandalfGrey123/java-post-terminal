@@ -90,9 +90,18 @@ public class PaymentPanel extends JPanel {
     }
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        postView.createSale();
-        clearFields();
+
+        boolean numeric = true;
+        numeric = amountTextField.getText().matches("-?\\d+(\\.\\d+)?");
+
+        if(numeric){
+            postView.createSale();
+            clearFields();
+        }
+        else
+            amountTextField.setText("");
     }
+    
 
     public static String getPaymentMethod(){
         return String.valueOf(payTypeComboBox.getSelectedItem());
