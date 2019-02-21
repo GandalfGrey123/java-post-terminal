@@ -1,8 +1,8 @@
 # Point of Sale Terminal (Now with GUI!)
 ### SFSU csc668/868 project
+![](https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/UI.png?raw=true)
 ### Team members:
 * Gary Straub
-* David Lopez
 * Mahdi (Matt) Massoodi
 * Izaac Garcilazo
 * Bijan Mahdavi
@@ -10,7 +10,7 @@
 * Pablo Escriva
 
 ### Project Document
-[Link to pdf](https://github.com/sfsu-csc-668-spring-2019/post-assignment-new-group-6/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
+[Link to pdf](https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
 
 
 ### Instructions:
