@@ -91,15 +91,19 @@ public class PaymentPanel extends JPanel {
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
-        boolean numeric = true;
-        numeric = amountTextField.getText().matches("-?\\d+(\\.\\d+)?");
-
-        if(numeric){
+        boolean creditCardNumeric = true;
+        boolean amountNumeric = true;
+        creditCardNumeric = amountTextField.getText().matches("-?\\d+(\\.\\d+)?");
+        amountNumeric = creditCardTxt.getText().matches("-?\\d+(\\.\\d+)?");
+        if(creditCardNumeric && amountNumeric ){
             postView.createSale();
             clearFields();
         }
-        else
+        else{
             amountTextField.setText("");
+            creditCardTxt.setText("123456789");
+        }
+
     }
     
 
