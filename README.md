@@ -1,6 +1,10 @@
 # Point of Sale Terminal (Now with GUI!)
 ### SFSU csc668/868 project
-![](https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/UI.png?raw=true)
+
+<p align="center">
+<img src="https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/UI.png?raw" alt="alt text" width="650">
+<p>
+  
 ### Team members:
 * Gary Straub
 * Mahdi (Matt) Massoodi
