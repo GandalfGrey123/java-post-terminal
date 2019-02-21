@@ -10,7 +10,7 @@
 * Pablo Escriva
 
 ### Project Document
-[Link to pdf](https://github.com/sfsu-csc-668-spring-2019/post-assignment-new-group-6/blob/developer/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
+[Link to pdf](https://github.com/sfsu-csc-668-spring-2019/post-assignment-new-group-6/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
 
 
 ### Instructions:
