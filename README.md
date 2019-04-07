@@ -22,4 +22,4 @@ school project
 ### Instructions:
 1. Download or clone the project
 2. Compile: `javac -cp ".:./jars/gson.jar" Manager.java`
-3. Run: `java -cp ".:./jars/gson.jar" Manager <Database UR
+3. Run: `java -cp ".:./jars/gson.jar" Manager <Database URL>`
