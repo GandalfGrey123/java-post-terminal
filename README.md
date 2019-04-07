@@ -1,7 +1,11 @@
 # Point of Sale Terminal (Now with GUI!)
 ### SFSU CSC 668/868 project
 
-school project
+School project
+
+### Project Document
+[Link to pdf](https://github.com/GandalfGrey123/java-post-terminal/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
+
 
 <p align="center">
 <img src="https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/UI.png?raw" alt="alt text" width="650">
@@ -14,9 +18,6 @@ school project
 * Bijan Mahdavi
 * Marcus Wong
 * Pablo Escriva
-
-### Project Document
-[Link to pdf](https://github.com/GandalfGrey123/java-post-terminal/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
 
 
 ### Instructions:
