@@ -1,5 +1,7 @@
 # Point of Sale Terminal (Now with GUI!)
-### SFSU csc668/868 project
+### SFSU CSC 668/868 project
+
+school project
 
 <p align="center">
 <img src="https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/UI.png?raw" alt="alt text" width="650">
