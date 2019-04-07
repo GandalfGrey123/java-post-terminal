@@ -16,7 +16,7 @@ school project
 * Pablo Escriva
 
 ### Project Document
-[Link to pdf](https://github.com/pabloegpf1/Point-of-Sale-Terminal/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
+[Link to pdf](https://github.com/GandalfGrey123/java-post-terminal/blob/master/docs/CSC%20668%20HW2%20POST%20GUI.pdf)
 
 
 ### Instructions:
